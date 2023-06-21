@@ -13,13 +13,13 @@ import Navbar from "./components/navbar";
 import Home from "./components/home";
 import Search from "./components/search";
 import SongDetails from "./components/song-details";
-import Event from "./components/event";
+import Event from "./components/events";
 import EventCreate from "./components/events/event-create";
 import EventDetails from "./components/events/event-details";
 import ProtectedEventCreate from "./components/events/protected-event-create";
 import searchReducer from "./components/search/search-reducer";
-import randomMealReducer from "./components/random-recipe/randomMealReducer";
-import mealDetailsReducer from "./components/meal-details/meal-details-reducer";
+import randomSongReducer from "./components/random-recipe/randomSongReducer";
+import songDetailsReducer from "./components/song-details/song-details-reducer";
 import EventReducer from "./components/events/event-reducer";
 import usersReducer from "./components/users/users-reducer";
 import reviewsReducer from "./components/reviews/reviews-reducer";
@@ -30,8 +30,8 @@ import ProtectedAdminDashboard from "./components/admin/protected-admin-dashboar
 const store = configureStore({
   reducer: {
     search: searchReducer,
-    randomMeals: randomMealReducer,
-    mealDetails: mealDetailsReducer,
+    randomSongs: randomSongReducer,
+    songDetails: songDetailsReducer,
     event: EventReducer,
     users: usersReducer,
     reviews: reviewsReducer,
@@ -50,7 +50,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/search" element={<Search />} />
               <Route path="/search/:searchName" element={<Search />} />
-              <Route path="/meal/details/:mid" element={<MealDetails />} />
+              <Route path="/song/details/:mid" element={<SongDetails />} />
               <Route path="/event" element={<Event />} />
               <Route
                 path="/admin"

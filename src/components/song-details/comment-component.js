@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { parseTime } from "../blog/parseTime";
+import { parseTime } from "../events/parseTime";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";

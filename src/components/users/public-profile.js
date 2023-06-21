@@ -19,7 +19,7 @@ import Follows from '../follows/follows';
 import Likes from '../likes/likes';
 import { getEventsByUserIdThunk } from '../events/event-thunks';
 import { userLikesFoodThunk } from '../likes/likes-thunks';
-import { parseTime } from '../event/parseTime';
+import { parseTime } from '../events/parseTime';
 
 const PublicProfile = () => {
   const { uid } = useParams();

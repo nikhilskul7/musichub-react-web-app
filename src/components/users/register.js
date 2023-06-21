@@ -16,7 +16,7 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("CRITIC");
+  const [role, setRole] = useState("VIEWER");
 
   const [firstNameAlert, setFirstNameAlert] = useState(false);
   const [lastNameAlert, setLastNameAlert] = useState(false);

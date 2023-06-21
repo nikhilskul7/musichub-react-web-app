@@ -37,13 +37,13 @@ const NavbarComponent = () => {
           className="wd-cursor-pointer"
           onClick={() => handleNavbarClick("/")}
         >
-          Kitchen Chronicles
+          Sputify
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link onClick={() => handleNavbarClick("/search")}>
-              Recipes
+              Tracks
             </Nav.Link>
             <Nav.Link onClick={() => handleNavbarClick("/event")}>Event</Nav.Link>
 

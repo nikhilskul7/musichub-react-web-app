@@ -92,7 +92,7 @@ const Home = () => {
           </>
         )}
 
-        <h3>Recommended Recipes</h3>
+        <h3>Recommended Tracks</h3>
         <RandomRecipes />
       </div>
     </div>

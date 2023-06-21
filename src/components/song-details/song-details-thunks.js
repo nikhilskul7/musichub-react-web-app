@@ -1,24 +1,24 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  getMealReviewsService,
-  mealDetailsService,
-  postMealCommentService,
-} from "../../services/meal-details-service";
+  getSongReviewsService,
+  songDetailsService,
+  postsongCommentService,
+} from "../../services/song-details-service";
 
 const BASE_API_URL = process.env.REACT_API_BASE || "http://localhost:4000";
-const USER_API_URL = BASE_API_URL + "/meal";
+const USER_API_URL = BASE_API_URL + "/song";
 
-export const mealDetailsThunks = createAsyncThunk(
-  "mealDetailsThunks/get",
-  async (mid) => await mealDetailsService(mid)
+export const songDetailsThunks = createAsyncThunk(
+  "songDetailsThunks/get",
+  async (mid) => await songDetailsService(mid)
 );
 
-export const getMealReviewsThunk = createAsyncThunk(
-  "meal/getComments",
-  async (mid) => await getMealReviewsService(mid)
+export const getSongReviewsThunk = createAsyncThunk(
+  "song/getComments",
+  async (mid) => await getSongReviewsService(mid)
 );
 
-export const postMealCommentThunk = createAsyncThunk(
-  "meal/postComment",
-  async (comment) => await postMealCommentService(comment)
+export const postSongCommentThunk = createAsyncThunk(
+  "song/postComment",
+  async (comment) => await postSongCommentService(comment)
 );

@@ -1,26 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { mealDetailsThunks } from "./meal-details-thunks";
+import { songDetailsThunks } from "./song-details-thunks";
 
 const initialState = {
-  meal: {},
+  song: {},
   comments: [],
   loading: false,
 };
 
-const mealDetailsReducer = createSlice({
-  name: "mealDetailsReducer",
+const songDetailsReducer = createSlice({
+  name: "songDetailsReducer",
   initialState,
   extraReducers: {
-    [mealDetailsThunks.pending]: (state) => {
+    [songDetailsThunks.pending]: (state) => {
       state.loading = true;
-      state.meal = {};
+      state.song = {};
       state.comments = {};
     },
-    [mealDetailsThunks.fulfilled]: (state, { payload }) => {
+    [songDetailsThunks.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.meal = payload;
+      state.song = payload;
     },
   },
 });
 
-export default mealDetailsReducer.reducer;
+export default songDetailsReducer.reducer;

@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { findUserByIdThunk } from './users-thunk';
-import { findReviewsByAuthorThunk } from '../reviews/reviews-thunks';
+import { findReviewsByHostThunk } from '../reviews/reviews-thunks';
 import { Link } from 'react-router-dom';
 import {
   findFollowersThunk,
@@ -17,15 +17,15 @@ import { Badge } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Follows from '../follows/follows';
 import Likes from '../likes/likes';
-import { getBlogsByUserIdThunk } from '../blog/blog-thunks';
+import { getEventsByUserIdThunk } from '../events/event-thunks';
 import { userLikesFoodThunk } from '../likes/likes-thunks';
-import { parseTime } from '../blog/parseTime';
+import { parseTime } from '../event/parseTime';
 
 const PublicProfile = () => {
   const { uid } = useParams();
   const { publicProfile } = useSelector((state) => state.users);
   const { currentUser } = useSelector((state) => state.users);
-  let { blog } = useSelector((state) => state.blog);
+  let { event } = useSelector((state) => state.event);
   const { reviews } = useSelector((state) => state.reviews);
   const { followers, following } = useSelector((state) => state.follows);
   const [followedBtn, setFollowedBtn] = useState(false);
@@ -40,13 +40,13 @@ const PublicProfile = () => {
     setFollowedBtn(!followedBtn);
   };
 
-  blog = blog.filter((bg) => bg.author.authorName === publicProfile.username);
+  event = event.filter((bg) => bg.host.hostName === publicProfile.username);
 
   useEffect(() => {
     dispatch(findUserByIdThunk(uid));
-    dispatch(getBlogsByUserIdThunk(uid));
+    dispatch(getEventsByUserIdThunk(uid));
 
-    dispatch(findReviewsByAuthorThunk(uid));
+    dispatch(findReviewsByHostThunk(uid));
     dispatch(findFollowersThunk(uid));
     dispatch(findFollowingThunk(uid));
   }, [uid]);
@@ -77,7 +77,7 @@ const PublicProfile = () => {
             <></>
           )}
 
-          {publicProfile.role === 'BLOGGER' ? (
+          {publicProfile.role === 'MUSIC-CREATOR' ? (
             <img
               src={
                 publicProfile.profilePic
@@ -130,7 +130,7 @@ const PublicProfile = () => {
                 </Col>
               </Form.Group>
 
-              {currentUser && currentUser.role === 'BLOGGER' ? (
+              {currentUser && currentUser.role === 'MUSIC-CREATOR' ? (
                 <div>
                   <Form.Group as={Row} className="mb-3" controlId="profileBio">
                     <Form.Label column sm="2" className={'text-secondary'}>
@@ -209,24 +209,24 @@ const PublicProfile = () => {
 
             <hr />
 
-            {publicProfile && publicProfile.role === 'BLOGGER' && (
+            {publicProfile && publicProfile.role === 'MUSIC-CREATOR' && (
               <>
-                <h2>Blogs</h2>
+                <h2>Events</h2>
                 <ul className={'list-group mb-3'}>
-                  {blog && blog.length === 0 ? (
-                    <p>This user haven't written any blog.</p>
+                  {event && event.length === 0 ? (
+                    <p>This user haven't written any event.</p>
                   ) : (
-                    blog
+                    event
                       .filter(
-                        (bg) => bg.author.authorName === publicProfile.username
+                        (bg) => bg.host.hostName === publicProfile.username
                       )
-                      .map((b) => (
+                      .map((e) => (
                         <li
                           className={'list-group-item'}
-                          onClick={() => navigate('/blog/details/' + b._id)}
-                          key={b._id}
+                          onClick={() => navigate('/event/details/' + e._id)}
+                          key={e._id}
                         >
-                          <h5>{b.title}</h5>
+                          <h5>{e.title}</h5>
 
                           <i
                             onClick={() => {
@@ -235,9 +235,9 @@ const PublicProfile = () => {
                             className="red"
                           ></i>
                           <div className={'text-secondary'}>
-                            <span>By: {b.author.authorName}</span>
+                            <span>By: {e.host.hostName}</span>
                             <i className="bi bi-dot"></i>
-                            <span>{parseTime(b.time)}</span>
+                            <span>{parseTime(e.date)}</span>
                           </div>
                         </li>
                       ))
@@ -282,7 +282,7 @@ const PublicProfile = () => {
                 <p>This user haven't posted any comments yet.</p>
               ) : (
                 reviews
-                  .filter((u) => u.author._id === uid)
+                  .filter((u) => u.host._id === uid)
                   .map((u) => (
                     <li
                       className={'list-group-item'}
@@ -291,14 +291,14 @@ const PublicProfile = () => {
                       <span className={'fw-bold'}>
                         <Link
                           className={'text-black'}
-                          to={`/profile/${u.author._id}`}
+                          to={`/profile/${u.host._id}`}
                         >
-                          {u.author.username}
+                          {u.host.username}
                         </Link>
                       </span>
                       <span>
                         <i className="bi bi-dot"></i>
-                        {parseTime(u.time)}
+                        {parseTime(u.date)}
                       </span>
                       <p>{u.review}</p>
                     </li>

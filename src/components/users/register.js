@@ -167,10 +167,10 @@ const Register = () => {
           <Form.Check
             type={"radio"}
             name={"registerRolesRadio"}
-            label={`Blogger`}
-            value={"BLOGGER"}
-            id={`registerRoleBlogger`}
-            checked={role === "BLOGGER"}
+            label={`Music-Creator`}
+            value={"MUSIC-CREATOR"}
+            id={`registerRoleCreator`}
+            checked={role === "MUSIC-CREATOR"}
             onChange={(event) => setRole(event.target.value)}
           />
           <Form.Check

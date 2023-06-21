@@ -13,14 +13,14 @@ import Navbar from "./components/navbar";
 import Home from "./components/home";
 import Search from "./components/search";
 import MealDetails from "./components/meal-details";
-import Blog from "./components/blog";
-import BlogCreate from "./components/blog/blog-create";
-import BlogDetails from "./components/blog/blog-details";
-import ProtectedBlogCreate from "./components/blog/protected-blog-create";
+import Event from "./components/event";
+import EventCreate from "./components/events/event-create";
+import EventDetails from "./components/events/event-details";
+import ProtectedEventCreate from "./components/events/protected-event-create";
 import searchReducer from "./components/search/search-reducer";
 import randomMealReducer from "./components/random-recipe/randomMealReducer";
 import mealDetailsReducer from "./components/meal-details/meal-details-reducer";
-import BlogReducer from "./components/blog/blog-reducer";
+import EventReducer from "./components/events/event-reducer";
 import usersReducer from "./components/users/users-reducer";
 import reviewsReducer from "./components/reviews/reviews-reducer";
 import followsReducer from "./components/follows/follows-reducer";
@@ -32,7 +32,7 @@ const store = configureStore({
     search: searchReducer,
     randomMeals: randomMealReducer,
     mealDetails: mealDetailsReducer,
-    blog: BlogReducer,
+    event: EventReducer,
     users: usersReducer,
     reviews: reviewsReducer,
     follows: followsReducer,
@@ -51,7 +51,7 @@ function App() {
               <Route path="/search" element={<Search />} />
               <Route path="/search/:searchName" element={<Search />} />
               <Route path="/meal/details/:mid" element={<MealDetails />} />
-              <Route path="/blog" element={<Blog />} />
+              <Route path="/event" element={<Event />} />
               <Route
                 path="/admin"
                 element={
@@ -61,14 +61,14 @@ function App() {
                 }
               />
               <Route
-                path="/blog/create"
+                path="/event/create"
                 element={
-                  <ProtectedBlogCreate>
-                    <BlogCreate />
-                  </ProtectedBlogCreate>
+                  <ProtectedEventCreate>
+                    <EventCreate />
+                  </ProtectedEventCreate>
                 }
               />
-              <Route path="/blog/details/:bid" element={<BlogDetails />} />
+              <Route path="/event/details/:bid" element={<EventDetails />} />
               <Route path="/users" element={<Users />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />

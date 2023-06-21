@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import { useDispatch, useSelector } from "react-redux";
-import { getRandomMeal } from "./getRandomMeal";
-import MealCard from "../meal-card/mealCard";
+import { getRandomSong } from "./getRandomSong";
+import SongCard from "../song-card/songCard";
 
 const RandomRecipes = () => {
-  const { recipes, loading } = useSelector((state) => state.randomMeals);
+  const { recipes, loading } = useSelector((state) => state.randomSongs);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getRandomMeal());
+    dispatch(getRandomSong());
   }, [dispatch]);
 
   console.log(recipes);
@@ -17,7 +17,7 @@ const RandomRecipes = () => {
   return (
     <Row>
       {!loading &&
-        recipes.map((recipe) => <MealCard key={recipe.idMeal} meal={recipe} />)}
+        recipes.map((recipe) => <SongCard key={recipe.idSong} song={recipe} />)}
     </Row>
   );
 };

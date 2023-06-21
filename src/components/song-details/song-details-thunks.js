@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   getSongReviewsService,
   songDetailsService,
-  postsongCommentService,
+  postSongCommentService,
 } from "../../services/song-details-service";
 
 const BASE_API_URL = process.env.REACT_API_BASE || "http://localhost:4000";

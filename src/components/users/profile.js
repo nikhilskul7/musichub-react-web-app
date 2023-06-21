@@ -373,7 +373,7 @@ const Profile = () => {
             reviews.map((u) => (
               <li
                 className={'list-group-item'}
-                onClick={() => navigate(`/meal/details/${u.idMeal}`)}
+                onClick={() => navigate(`/song/details/${u.idSong}`)}
               >
                 <span className={'fw-bold'}>
                   <Link

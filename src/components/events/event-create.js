@@ -31,7 +31,7 @@ const EventCreate = () => {
       dispatch(
         createEventThunk({
           title: title,
-          event: summary,
+          description: summary,
         })
       );
       navigate("/event");

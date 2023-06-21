@@ -12,7 +12,7 @@ import Profile from "./components/users/profile";
 import Navbar from "./components/navbar";
 import Home from "./components/home";
 import Search from "./components/search";
-import MealDetails from "./components/meal-details";
+import SongDetails from "./components/song-details";
 import Event from "./components/event";
 import EventCreate from "./components/events/event-create";
 import EventDetails from "./components/events/event-details";

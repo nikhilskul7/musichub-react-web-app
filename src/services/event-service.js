@@ -1,32 +1,32 @@
 import axios from "axios";
 
 const BASE_API_URL = process.env.REACT_API_BASE || "http://localhost:4000";
-const BLOG_API = BASE_API_URL + "/blog";
+const EVENT_API = BASE_API_URL + "/event";
 
 const api = axios.create({ withCredentials: true });
 
-export const createBlog = async (blog) => {
-  const response = await api.post(BLOG_API, blog);
+export const createEvent = async (event) => {
+  const response = await api.post(EVENT_API, event);
   return response.data;
 };
 
-export const getAllBlogs = async () => {
-  const response = await api.get(BLOG_API);
+export const getAllEvents = async () => {
+  const response = await api.get(EVENT_API);
   return response.data;
 };
 
-export const getBlogDetails = async (bid) => {
-  const response = await api.get(`${BLOG_API}/${bid}`);
+export const getEventDetails = async (eid) => {
+  const response = await api.get(`${EVENT_API}/${eid}`);
   return response.data;
 };
 
-export const getBlogsByUserIdService = async (uid) => {
-  const response = await api.get(`${BLOG_API}/user/${uid}`);
+export const getEventsByUserIdService = async (uid) => {
+  const response = await api.get(`${EVENT_API}/user/${uid}`);
   return response.data;
 };
 
-export const deleteBlog = async (bid) => {
-  const response = await axios.delete(`${BLOG_API}/${bid}`);
+export const deleteEvent = async (eid) => {
+  const response = await axios.delete(`${EVENT_API}/${eid}`);
   const status = response.data;
-  return bid;
+  return eid;
 };

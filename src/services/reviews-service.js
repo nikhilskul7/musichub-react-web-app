@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_API_URL = process.env.REACT_API_BASE || "http://localhost:4000";
 const FOOD_REVIEWS_API = BASE_API_URL + "/api/reviews/meal";
-const AUTHOR_REVIEWS_API = BASE_API_URL + "/api/users";
+const HOST_REVIEWS_API = BASE_API_URL + "/api/users";
 
 const api = axios.create({ withCredentials: true });
 
@@ -30,7 +30,7 @@ export const findReviewsByFood = async (idMeal) => {
   return response.data;
 };
 
-export const findReviewsByAuthor = async (author) => {
-  const response = await api.get(`${AUTHOR_REVIEWS_API}/${author}/reviews`);
+export const findReviewsByHost = async (host) => {
+  const response = await api.get(`${HOST_REVIEWS_API}/${host}/reviews`);
   return response.data;
 };

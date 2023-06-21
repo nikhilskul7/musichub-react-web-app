@@ -67,7 +67,7 @@ function AdminDashboard() {
 
   const handleReviewDelete = (id) => {
     api
-      .delete(`http://localhost:4000/api/reviews/meal/${id}`)
+      .delete(`http://localhost:4000/api/reviews/song/${id}`)
       .then(() => {
         const updatedReviews = reviews.filter((review) => review._id !== id);
         setReviews(updatedReviews);

@@ -2,7 +2,7 @@ import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useDispatch } from "react-redux";
 import Button from "react-bootstrap/Button";
-import { createBlogThunk } from "./blog-thunks";
+import { createEventThunk } from "./event-thunks";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
@@ -10,7 +10,7 @@ import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { Alert } from "react-bootstrap";
 
-const BlogCreate = () => {
+const EventCreate = () => {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const BlogCreate = () => {
   const [titleAlert, setTitleAlert] = useState(false);
   const [summaryAlert, setSummaryAlert] = useState(false);
 
-  const createBlog = () => {
+  const createEvent = () => {
     setTitleAlert(false);
     setSummaryAlert(false);
 
@@ -29,20 +29,20 @@ const BlogCreate = () => {
       setSummaryAlert(true);
     } else {
       dispatch(
-        createBlogThunk({
+        createEventThunk({
           title: title,
-          blog: summary,
+          event: summary,
         })
       );
-      navigate("/blog");
+      navigate("/event");
     }
   };
   return (
     <div>
-      <Link to={"/blog"} className={"text-decoration-none text-secondary"}>
+      <Link to={"/event"} className={"text-decoration-none text-secondary"}>
         <i className="bi bi-arrow-left me-1"></i>Back
       </Link>
-      <h2>Write a blog</h2>
+      <h2>Create an Event</h2>
 
       <Alert
         variant="danger"
@@ -50,7 +50,7 @@ const BlogCreate = () => {
         className={titleAlert ? "d-block" : "d-none"}
         dismissible
       >
-        <span>Please enter the title of the blog!</span>
+        <span>Please enter the title of the event!</span>
       </Alert>
       <Alert
         variant="danger"
@@ -58,13 +58,13 @@ const BlogCreate = () => {
         className={summaryAlert ? "d-block" : "d-none"}
         dismissible
       >
-        <span>Please enter the body of the blog!</span>
+        <span>Please enter the description of the event!</span>
       </Alert>
 
       <Container>
-        <span className={"text-muted"}>Write your blog here</span>
+        <span className={"text-muted"}>Create your event here</span>
         <Form>
-          <FloatingLabel controlId="blogTitle" label="Title *" className="mb-3">
+          <FloatingLabel controlId="eventTitle" label="Title *" className="mb-3">
             <Form.Control
               type="text"
               value={title}
@@ -72,17 +72,17 @@ const BlogCreate = () => {
               onChange={(event) => setTitle(event.target.value)}
             />
           </FloatingLabel>
-          <FloatingLabel controlId="blogBody" label="Body *">
+          <FloatingLabel controlId="eventBody" label="Body *">
             <Form.Control
               as="textarea"
-              placeholder="Body"
+              placeholder="Description"
               style={{ height: "15rem" }}
               value={summary}
               onChange={(event) => setSummary(event.target.value)}
             />
           </FloatingLabel>
           <Form.Text id="passwordHelpBlock" muted>
-            Write your blog using Markdown.
+            Create your event using Markdown.
           </Form.Text>
         </Form>
 
@@ -93,12 +93,12 @@ const BlogCreate = () => {
         <h3>{title}</h3>
         <ReactMarkdown children={summary} />
 
-        <Button onClick={createBlog} className={"mb-3 mt-5"}>
-          Publish Blog
+        <Button onClick={createEvent} className={"mb-3 mt-5"}>
+          Publish Event
         </Button>
       </Container>
     </div>
   );
 };
 
-export default BlogCreate;
+export default EventCreate;

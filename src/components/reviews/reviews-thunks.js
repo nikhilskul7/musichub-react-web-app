@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   createReview,
   deleteReviewService,
-  findReviewsByAuthor,
+  findReviewsByHost,
   findReviewsByFood,
   updateReviewService,
 } from "../../services/reviews-service";
@@ -22,9 +22,9 @@ export const findReviewsByFoodThunk = createAsyncThunk(
   async (idMeal) => findReviewsByFood(idMeal)
 );
 
-export const findReviewsByAuthorThunk = createAsyncThunk(
-  "findReviewsByAuthorThunk",
-  async (author) => findReviewsByAuthor(author)
+export const findReviewsByHostThunk = createAsyncThunk(
+  "findReviewsByHostThunk",
+  async (host) => findReviewsByHost(host)
 );
 
 export const deleteReviewThunk = createAsyncThunk(

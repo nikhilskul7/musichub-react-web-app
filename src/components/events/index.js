@@ -2,35 +2,35 @@ import { useNavigate } from "react-router";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getAllBlogsThunk } from "./blog-thunks";
+import { getAllEventsThunk } from "./event-thunks";
 import { parseTime } from "./parseTime";
 import { Link } from "react-router-dom";
 import { userLikesFoodThunk } from "../likes/likes-thunks";
 import { followUserThunk } from "../follows/follows-thunks";
 import "../index.css";
 
-const blogs = [
+const events = [
   {
     _id: "123",
-    title: "title1",
+    title: "event1",
     username: "bob",
-    summary: "this a simple food blog by bob",
-    date: "3h",
+    summary: "this is event 1",
+    date: "2023-12-12",
   },
   {
     _id: "234",
-    title: "title2",
+    title: "event2",
     username: "alice",
-    summary: "this a simple food blog by alice",
-    date: "4h",
+    summary: "this is event2",
+    date: "2024-04-17",
   },
 ];
 
-const Blog = () => {
+const Event = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.users);
-  const { blog, loading } = useSelector((state) => state.blog);
+  const { event, loading } = useSelector((state) => state.event);
 
   const [liked, setLiked] = useState(false);
   const handleLikeBtn = () => {
@@ -38,30 +38,30 @@ const Blog = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllBlogsThunk());
+    dispatch(getAllEventsThunk());
   }, []);
 
-  console.log(blog, loading);
+  console.log(event, loading);
   return (
     <div>
       {currentUser !== null &&
-        (currentUser.role === "BLOGGER" || currentUser.role === "ADMIN") && (
+        (currentUser.role === "MUSIC-CREATOR" || currentUser.role === "ADMIN") && (
           <Button onClick={() => navigate("create")}>Create</Button>
         )}
-      <h2>Recent Blog</h2>
+      <h2>Recent Event</h2>
       <ul className={"list-group"}>
-        {blog.map((b) => (
+        {event.map((e) => (
           <li
             className={"list-group-item wd-cursor-pointer"}
-            onClick={() => navigate("details/" + b._id)}
-            key={b._id}
+            onClick={() => navigate("details/" + e._id)}
+            key={e._id}
           >
-            <h5>{b.title}</h5>
+            <h5>{e.title}</h5>
 
             <div className={"text-secondary"}>
-              <span>By: {b.author.authorName}</span>
+              <span>By: {e.host.hostName}</span>
               <i className="bi bi-dot"></i>
-              <span>{parseTime(b.time)}</span>
+              <span>{parseTime(e.date)}</span>
             </div>
           </li>
         ))}
@@ -69,4 +69,4 @@ const Blog = () => {
     </div>
   );
 };
-export default Blog;
+export default Event;

@@ -1,80 +1,80 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  createBlogThunk,
-  deleteBlogThunk,
-  getAllBlogsThunk,
-  getBlogDetailsThunk,
-  getBlogsByUserIdThunk,
-} from "./blog-thunks";
+  createEventThunk,
+  deleteEventThunk,
+  getAllEventsThunk,
+  getEventDetailsThunk,
+  getEventsByUserIdThunk,
+} from "./event-thunks";
 
 const initialState = {
-  blog: [],
-  blogById: [],
+  event: [],
+  eventById: [],
   loading: false,
-  blogCreateError: false,
-  blogNotFoundError: false,
+  eventCreateError: false,
+  eventNotFoundError: false,
 };
 
-const BlogReducer = createSlice({
-  name: "blog",
+const EventReducer = createSlice({
+  name: "event",
   initialState,
   extraReducers: {
-    [createBlogThunk.pending]: (state) => {
-      state.blogCreateError = false;
-      state.blogNotFoundError = false;
+    [createEventThunk.pending]: (state) => {
+      state.eventCreateError = false;
+      state.eventNotFoundError = false;
       state.loading = true;
     },
-    [createBlogThunk.fulfilled]: (state, { payload }) => {
-      state.blogCreateError = false;
-      state.blogNotFoundError = false;
+    [createEventThunk.fulfilled]: (state, { payload }) => {
+      state.eventCreateError = false;
+      state.eventNotFoundError = false;
       state.loading = false;
-      state.blog.push(payload);
+      state.event.push(payload);
     },
-    [createBlogThunk.rejected]: (state, { payload }) => {
-      state.blogCreateError = true;
-      state.blogNotFoundError = false;
+    [createEventThunk.rejected]: (state, { payload }) => {
+      state.eventCreateError = true;
+      state.eventNotFoundError = false;
     },
-    [getAllBlogsThunk.pending]: (state) => {
-      state.blogCreateError = false;
-      state.blogNotFoundError = false;
+    [getAllEventsThunk.pending]: (state) => {
+      state.eventCreateError = false;
+      state.eventNotFoundError = false;
       state.loading = true;
     },
-    [getAllBlogsThunk.fulfilled]: (state, { payload }) => {
-      state.blogCreateError = false;
-      state.blogNotFoundError = false;
+    [getAllEventsThunk.fulfilled]: (state, { payload }) => {
+      state.eventCreateError = false;
+      state.eventNotFoundError = false;
       state.loading = false;
-      state.blog = payload;
+      state.event = payload;
     },
 
-    [getBlogDetailsThunk.pending]: (state, { payload }) => {
-      state.blogCreateError = false;
-      state.blogNotFoundError = false;
+    [getEventDetailsThunk.pending]: (state, { payload }) => {
+      state.eventCreateError = false;
+      state.eventNotFoundError = false;
       state.loading = true;
     },
-    [getBlogDetailsThunk.fulfilled]: (state, { payload }) => {
-      state.blogCreateError = false;
-      state.blogNotFoundError = false;
+    [getEventDetailsThunk.fulfilled]: (state, { payload }) => {
+      state.eventCreateError = false;
+      state.eventNotFoundError = false;
       state.loading = false;
-      state.blogById = payload;
+      state.eventById = payload;
     },
-    [getBlogDetailsThunk.rejected]: (state, payload) => {
-      state.blogCreateError = false;
-      state.blogNotFoundError = true;
+    [getEventDetailsThunk.rejected]: (state, payload) => {
+      state.eventCreateError = false;
+      state.eventNotFoundError = true;
     },
-    [deleteBlogThunk.fulfilled]: (state, action) => {
-      state.blogs = state.blogs.filter((blog) => {
-        return blog.id !== action.payload;
+    [deleteEventThunk.fulfilled]: (state, action) => {
+      state.events = state.events.filter((event) => {
+        return event.id !== action.payload;
       });
     },
-    [getBlogsByUserIdThunk.pending]: (state, action) => {
-      state.blog = [];
+    [getEventsByUserIdThunk.pending]: (state, action) => {
+      state.event = [];
       state.loading = true;
     },
-    [getBlogsByUserIdThunk.fulfilled]: (state, action) => {
-      state.blog = action.payload;
+    [getEventsByUserIdThunk.fulfilled]: (state, action) => {
+      state.event = action.payload;
       state.loading = false;
     },
   },
 });
 
-export default BlogReducer.reducer;
+export default EventReducer.reducer;

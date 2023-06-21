@@ -45,7 +45,7 @@ const NavbarComponent = () => {
             <Nav.Link onClick={() => handleNavbarClick("/search")}>
               Recipes
             </Nav.Link>
-            <Nav.Link onClick={() => handleNavbarClick("/blog")}>Blog</Nav.Link>
+            <Nav.Link onClick={() => handleNavbarClick("/event")}>Event</Nav.Link>
 
             {currentUser !== null && currentUser.role === "ADMIN" && (
               <Nav.Link onClick={() => handleNavbarClick("/admin")}>

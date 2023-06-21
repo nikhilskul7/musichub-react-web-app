@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getBlogDetailsThunk } from "./blog-thunks";
+import { getEventDetailsThunk } from "./event-thunks";
 import { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { parseTime } from "./parseTime";
@@ -8,19 +8,19 @@ import Container from "react-bootstrap/Container";
 import { Alert } from "react-bootstrap";
 import { userLikesFoodThunk } from "../likes/likes-thunks";
 
-const BlogDetails = () => {
+const EventDetails = () => {
   const { bid } = useParams();
   const { currentUser } = useSelector((state) => state.users);
-  const { blogById, loading, blogNotFoundError } = useSelector(
-    (state) => state.blog
+  const { eventById, loading, eventNotFoundError } = useSelector(
+    (state) => state.event
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getBlogDetailsThunk(bid));
+    dispatch(getEventDetailsThunk(bid));
   }, []);
 
-  console.log(blogById);
-  const aDay = new Date(blogById.time).getTime();
+  console.log(eventById);
+  const aDay = new Date(eventById.time).getTime();
   console.log(parseTime(aDay));
   return (
     <div>
@@ -28,34 +28,34 @@ const BlogDetails = () => {
         <i className="bi bi-arrow-left me-1"></i>Back
       </Link>
       <Container>
-        {blogNotFoundError ? (
+        {eventNotFoundError ? (
           <Alert variant="danger" className={"mt-5"}>
-            <Alert.Heading>Blog not found!</Alert.Heading>
+            <Alert.Heading>Event not found!</Alert.Heading>
             <p>
-              Please go back by clicking on the back icon or find another blog
-              in the Blog tab.
+              Please go back by clicking on the back icon or find another event
+              in the Event tab.
             </p>
           </Alert>
         ) : (
           !loading && (
             <>
-              <h1>{blogById.title}</h1>
+              <h1>{eventById.title}</h1>
               <div className={"text-secondary"}>
                 {/*                    {*/}
-                {/*                        blogById.author !== undefined &&*/}
+                {/*                        eventById.host !== undefined &&*/}
 
-                {/*                <span>By: <Link to={'/profile/' + blogById.author.authorId} className={' text-secondary'}>*/}
-                {/*                    {blogById.author.authorName}*/}
+                {/*                <span>By: <Link to={'/profile/' + eventById.host.hostId} className={' text-secondary'}>*/}
+                {/*                    {eventById.host.hostName}*/}
                 {/*                </Link></span> }*/}
-                {blogById.author && (
+                {eventById.host && (
                   <span>
                     <span>
                       By:{" "}
                       <Link
-                        to={"/profile/" + blogById.author.authorId}
+                        to={"/profile/" + eventById.host.hostId}
                         className={" text-secondary"}
                       >
-                        {blogById.author.authorName}
+                        {eventById.host.hostName}
                       </Link>
                     </span>
                     {/*<i onClick={() => {*/}
@@ -64,12 +64,12 @@ const BlogDetails = () => {
                   </span>
                 )}
                 <i className="bi bi-dot"></i>
-                <span>{parseTime(blogById.time)}</span>
+                <span>{parseTime(eventById.date)}</span>
               </div>
 
               <hr />
 
-              <ReactMarkdown children={blogById.blog} />
+              <ReactMarkdown children={eventById.event} />
             </>
           )
         )}
@@ -78,4 +78,4 @@ const BlogDetails = () => {
   );
 };
 
-export default BlogDetails;
+export default EventDetails;

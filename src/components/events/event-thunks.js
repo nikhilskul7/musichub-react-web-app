@@ -1,32 +1,32 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import * as service from "../../services/blog-service";
+import * as service from "../../services/event-service";
 import {
-  deleteBlog,
-  getBlogsByUserId,
-  getBlogsByUserIdService,
-} from "../../services/blog-service";
+  deleteEvent,
+  getEventsByUserId,
+  getEventsByUserIdService,
+} from "../../services/event-service";
 import { create } from "axios";
 
-export const createBlogThunk = createAsyncThunk(
-  "createBlog",
-  async (newBlog) => await service.createBlog(newBlog)
+export const createEventThunk = createAsyncThunk(
+  "createEvent",
+  async (newEvent) => await service.createEvent(newEvent)
 );
 
-export const getAllBlogsThunk = createAsyncThunk(
-  "getAllBlogs",
-  async () => await service.getAllBlogs()
+export const getAllEventsThunk = createAsyncThunk(
+  "getAllEvents",
+  async () => await service.getAllEvents()
 );
 
-export const getBlogDetailsThunk = createAsyncThunk(
-  "getBlogDetails",
-  async (bid) => await service.getBlogDetails(bid)
+export const getEventDetailsThunk = createAsyncThunk(
+  "getEventDetails",
+  async (eid) => await service.getEventDetails(eid)
 );
 
-export const deleteBlogThunk = createAsyncThunk("deleteBlog", (mid) =>
-  deleteBlog(mid)
+export const deleteEventThunk = createAsyncThunk("deleteEvent", (mid) =>
+  deleteEvent(mid)
 );
 
-export const getBlogsByUserIdThunk = createAsyncThunk(
-  "getBlogsByUserIdThunk",
-  (uid) => getBlogsByUserIdService(uid)
+export const getEventsByUserIdThunk = createAsyncThunk(
+  "getEventsByUserIdThunk",
+  (uid) => getEventsByUserIdService(uid)
 );

@@ -51,7 +51,7 @@ function AdminDashboard() {
   const monthlyUserStats = userStats.slice(0, 12);
 
   const [reviews, setReviews] = useState([]);
-  const [blogs, setBlogs] = useState([]);
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     api.get("http://localhost:4000/api/reviews").then((response) => {
@@ -60,8 +60,8 @@ function AdminDashboard() {
   }, []);
 
   useEffect(() => {
-    api.get("http://localhost:4000/blog").then((response) => {
-      setBlogs(response.data);
+    api.get("http://localhost:4000/event").then((response) => {
+      setEvents(response.data);
     });
   }, []);
 
@@ -73,19 +73,19 @@ function AdminDashboard() {
         setReviews(updatedReviews);
       })
       .catch((error) => {
-        console.error(`Error deleting blog with id ${id}: ${error.message}`);
+        console.error(`Error deleting event with id ${id}: ${error.message}`);
       });
   };
 
-  const handleBlogDelete = (id) => {
+  const handleEventDelete = (id) => {
     api
-      .delete(`http://localhost:4000/blog/${id}`)
+      .delete(`http://localhost:4000/event/${id}`)
       .then(() => {
-        const updatedBlogs = blogs.filter((blog) => blog._id !== id);
-        setBlogs(updatedBlogs);
+        const updatedEvents = events.filter((event) => event._id !== id);
+        setEvents(updatedEvents);
       })
       .catch((error) => {
-        console.error(`Error deleting blog with id ${id}: ${error.message}`);
+        console.error(`Error deleting event with id ${id}: ${error.message}`);
       });
   };
 
@@ -114,19 +114,19 @@ function AdminDashboard() {
         </div>
       )}
       
-      {blogs.length > 0 && (
-        <div className="blogs">
-          <h2>All Blogs</h2>
+      {events.length > 0 && (
+        <div className="events">
+          <h2>All Events</h2>
           <ul>
-            {blogs.map((blog) => (
-              <li key={blog._id}>
-                <h5>{blog.title}</h5>
-                <p>Author: {blog.author.authorName}</p>
-                <p>{blog.blog}</p>
+            {events.map((event) => (
+              <li key={event._id}>
+                <h5>{event.title}</h5>
+                <p>Host: {event.host.hostName}</p>
+                <p>{event.event}</p>
                 <Button
                   variant={"danger"}
                   className={"me-2"}
-                  onClick={() => handleBlogDelete(blog._id)}
+                  onClick={() => handleEventDelete(event._id)}
                 >
                   Delete
                 </Button>

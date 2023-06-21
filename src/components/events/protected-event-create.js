@@ -1,10 +1,10 @@
 import { Navigate, useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 
-const ProtectedBlogCreate = ({ children }) => {
+const ProtectedEventCreate = ({ children }) => {
   const { currentUser } = useSelector((state) => state.users);
   if (currentUser) {
-    if (currentUser.role === "BLOGGER" || currentUser.role === "ADMIN") {
+    if (currentUser.role === "MUSIC-CREATOR" || currentUser.role === "ADMIN") {
       return children;
     } else {
       return <Navigate to={"/"} />;
@@ -13,4 +13,4 @@ const ProtectedBlogCreate = ({ children }) => {
     return <Navigate to={"/login"} />;
   }
 };
-export default ProtectedBlogCreate;
+export default ProtectedEventCreate;

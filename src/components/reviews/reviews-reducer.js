@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   createReviewThunk,
   deleteReviewThunk,
-  findReviewsByAuthorThunk,
+  findReviewsByHostThunk,
   findReviewsByFoodThunk,
   updateReviewThunk,
 } from "./reviews-thunks";
@@ -31,7 +31,7 @@ const reviewsReducer = createSlice({
     [findReviewsByFoodThunk.fulfilled]: (state, action) => {
       state.reviews = action.payload;
     },
-    [findReviewsByAuthorThunk.fulfilled]: (state, action) => {
+    [findReviewsByHostThunk.fulfilled]: (state, action) => {
       console.log(action.payload);
       state.reviews = action.payload;
       console.log("after", action.reviews);

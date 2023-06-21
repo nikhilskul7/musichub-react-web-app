@@ -7,7 +7,7 @@ export const findFoodBySearchTerm = async (term) => {
     const response = await axios.get(`${SEARCH_URL}${term}`);
     console.log(`${SEARCH_URL}${term}`);
     console.log(response.data);
-    return response.data.meals;
+    return response.data.songs;
   } catch (error) {
     console.error(error);
     throw error;

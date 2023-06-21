@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_API_URL = process.env.REACT_API_BASE || "http://localhost:4000";
-const FOOD_REVIEWS_API = BASE_API_URL + "/api/reviews/meal";
+const FOOD_REVIEWS_API = BASE_API_URL + "/api/reviews/song";
 const HOST_REVIEWS_API = BASE_API_URL + "/api/users";
 
 const api = axios.create({ withCredentials: true });
@@ -9,7 +9,7 @@ const api = axios.create({ withCredentials: true });
 export const createReview = async (review) => {
   console.log(review);
   const response = await api.post(
-    `${FOOD_REVIEWS_API}/${review.idMeal}`,
+    `${FOOD_REVIEWS_API}/${review.idSong}`,
     review
   );
   return response.data;
@@ -25,8 +25,8 @@ export const deleteReviewService = async (commentID) => {
   return response.data;
 };
 
-export const findReviewsByFood = async (idMeal) => {
-  const response = await api.get(`${FOOD_REVIEWS_API}/${idMeal}`);
+export const findReviewsByFood = async (idSong) => {
+  const response = await api.get(`${FOOD_REVIEWS_API}/${idSong}`);
   return response.data;
 };
 

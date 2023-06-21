@@ -8,7 +8,7 @@ const api = axios.create({ withCredentials: true });
 
 export const createLike = async (like) => {
   console.log(like);
-  const response = await api.post(`${LIKES_URL}/${like.idMeal}`, like);
+  const response = await api.post(`${LIKES_URL}/${like.idSong}`, like);
   return response.data;
 };
 

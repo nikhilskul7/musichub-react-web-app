@@ -11,9 +11,9 @@ import Alert from "react-bootstrap/Alert";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import {
   createReviewThunk,
-  findReviewsByFoodThunk,
+  findReviewsByNotesThunk,
 } from "../reviews/reviews-thunks";
-import { userLikesFoodThunk } from "../likes/likes-thunks";
+import { userLikesNotesThunk } from "../likes/likes-thunks";
 import CommentComponent from "./comment-component";
 import Container from "react-bootstrap/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -42,7 +42,7 @@ const SongDetails = () => {
 
   useEffect(() => {
     dispatch(songDetailsThunks(mid));
-    dispatch(findReviewsByFoodThunk(mid));
+    dispatch(findReviewsByNotesThunk(mid));
   }, []);
 
   const postSongComment = () => {
@@ -52,11 +52,11 @@ const SongDetails = () => {
     };
     dispatch(createReviewThunk(review));
     setComment("");
-    dispatch(findReviewsByFoodThunk(mid));
+    dispatch(findReviewsByNotesThunk(mid));
   };
 
   const reloadComments = () => {
-    dispatch(findReviewsByFoodThunk(mid));
+    dispatch(findReviewsByNotesThunk(mid));
   };
 
   useEffect(() => {
@@ -76,7 +76,7 @@ const SongDetails = () => {
       const like = {
         idSong: song.idSong,
       };
-      dispatch(userLikesFoodThunk(like));
+      dispatch(userLikesNotesThunk(like));
       setLiked(true);
     } else {
       api

@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { createLike, findLikesByUser } from "../../services/likes-service";
 
-export const userLikesFoodThunk = createAsyncThunk(
-  "userLikesFood",
+export const userLikesNotesThunk = createAsyncThunk(
+  "userLikesNotes",
   async (like) => createLike(like)
 );
 

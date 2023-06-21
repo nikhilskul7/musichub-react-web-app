@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { findFoodBySearchTerm } from "../../services/search-service";
+import { findNotesBySearchTerm } from "../../services/search-service";
 
-export const findFoodBySearchTermThunk = createAsyncThunk(
-  "findFoodBySearchTerm",
-  (term) => findFoodBySearchTerm(term)
+export const findNotesBySearchTermThunk = createAsyncThunk(
+  "findNotesBySearchTerm",
+  (term) => findNotesBySearchTerm(term)
 );

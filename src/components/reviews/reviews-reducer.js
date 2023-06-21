@@ -3,7 +3,7 @@ import {
   createReviewThunk,
   deleteReviewThunk,
   findReviewsByHostThunk,
-  findReviewsByFoodThunk,
+  findReviewsByNotesThunk,
   updateReviewThunk,
 } from "./reviews-thunks";
 import { deleteReviewService } from "../../services/reviews-service";
@@ -28,7 +28,7 @@ const reviewsReducer = createSlice({
         (u) => u._id !== deletedComment.reviewID
       );
     },
-    [findReviewsByFoodThunk.fulfilled]: (state, action) => {
+    [findReviewsByNotesThunk.fulfilled]: (state, action) => {
       state.reviews = action.payload;
     },
     [findReviewsByHostThunk.fulfilled]: (state, action) => {

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { findLikesByUserThunk, userLikesFoodThunk } from "./likes-thunks";
+import { findLikesByUserThunk, userLikesNotesThunk } from "./likes-thunks";
 
 const likesReducer = createSlice({
   name: "likes",
@@ -7,7 +7,7 @@ const likesReducer = createSlice({
     likes: [],
   },
   extraReducers: {
-    [userLikesFoodThunk.fulfilled]: (state, action) => {
+    [userLikesNotesThunk.fulfilled]: (state, action) => {
       state.likes.unshift(action.payload);
     },
     [findLikesByUserThunk.fulfilled]: (state, action) => {

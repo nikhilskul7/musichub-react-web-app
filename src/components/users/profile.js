@@ -17,7 +17,7 @@ import {
   findFollowersThunk,
   findFollowingThunk,
 } from '../follows/follows-thunks';
-import { userLikesFoodThunk } from '../likes/likes-thunks';
+import { userLikesNotesThunk } from '../likes/likes-thunks';
 import { parseTime } from '../events/parseTime';
 import Follows from '../follows/follows';
 import { getEventsByUserIdThunk } from '../events/event-thunks';
@@ -347,7 +347,7 @@ const Profile = () => {
 
                       <i
                         onClick={() => {
-                          dispatch(userLikesFoodThunk());
+                          dispatch(userLikesNotesThunk());
                         }}
                         className="red"
                       ></i>

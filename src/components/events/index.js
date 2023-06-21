@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { getAllEventsThunk } from "./event-thunks";
 import { parseTime } from "./parseTime";
 import { Link } from "react-router-dom";
-import { userLikesFoodThunk } from "../likes/likes-thunks";
+import { userLikesNotesThunk } from "../likes/likes-thunks";
 import { followUserThunk } from "../follows/follows-thunks";
 import "../index.css";
 
@@ -34,7 +34,7 @@ const Event = () => {
 
   const [liked, setLiked] = useState(false);
   const handleLikeBtn = () => {
-    dispatch(userLikesFoodThunk());
+    dispatch(userLikesNotesThunk());
   };
 
   useEffect(() => {

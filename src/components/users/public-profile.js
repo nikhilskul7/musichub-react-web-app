@@ -18,7 +18,7 @@ import Button from 'react-bootstrap/Button';
 import Follows from '../follows/follows';
 import Likes from '../likes/likes';
 import { getEventsByUserIdThunk } from '../events/event-thunks';
-import { userLikesFoodThunk } from '../likes/likes-thunks';
+import { userLikesNotesThunk } from '../likes/likes-thunks';
 import { parseTime } from '../events/parseTime';
 
 const PublicProfile = () => {
@@ -230,7 +230,7 @@ const PublicProfile = () => {
 
                           <i
                             onClick={() => {
-                              dispatch(userLikesFoodThunk());
+                              dispatch(userLikesNotesThunk());
                             }}
                             className="red"
                           ></i>

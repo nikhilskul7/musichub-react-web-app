@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { findFoodBySearchTermThunk } from "./search-thunks";
+import { findNotesBySearchTermThunk } from "./search-thunks";
 import SongCard from "../song-card/songCard";
 import Row from "react-bootstrap/Row";
 import { useParams, useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ const Search = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(findFoodBySearchTermThunk(searchTerm));
+    dispatch(findNotesBySearchTermThunk(searchTerm));
   }, [searchTerm]);
 
   const searchHandle = () => {

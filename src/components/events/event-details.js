@@ -6,7 +6,7 @@ import ReactMarkdown from "react-markdown";
 import { parseTime } from "./parseTime";
 import Container from "react-bootstrap/Container";
 import { Alert } from "react-bootstrap";
-import { userLikesFoodThunk } from "../likes/likes-thunks";
+import { userLikesNotesThunk } from "../likes/likes-thunks";
 
 const EventDetails = () => {
   const { bid } = useParams();
@@ -59,7 +59,7 @@ const EventDetails = () => {
                       </Link>
                     </span>
                     {/*<i onClick={() => {*/}
-                    {/*    dispatch(userLikesFoodThunk(bid))*/}
+                    {/*    dispatch(userLikesNotesThunk(bid))*/}
                     {/*}} className={`${currentUser ? '' : 'd-none'} float-end bi bi-heart me-2`}></i>*/}
                   </span>
                 )}

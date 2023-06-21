@@ -3,7 +3,7 @@ import {
   createReview,
   deleteReviewService,
   findReviewsByHost,
-  findReviewsByFood,
+  findReviewsByNotes,
   updateReviewService,
 } from "../../services/reviews-service";
 
@@ -17,9 +17,9 @@ export const updateReviewThunk = createAsyncThunk(
   async (comment) => updateReviewService(comment)
 );
 
-export const findReviewsByFoodThunk = createAsyncThunk(
-  "findReviewsByFoodThunk",
-  async (idSong) => findReviewsByFood(idSong)
+export const findReviewsByNotesThunk = createAsyncThunk(
+  "findReviewsByNotesThunk",
+  async (idSong) => findReviewsByNotes(idSong)
 );
 
 export const findReviewsByHostThunk = createAsyncThunk(

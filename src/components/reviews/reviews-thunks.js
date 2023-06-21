@@ -19,7 +19,7 @@ export const updateReviewThunk = createAsyncThunk(
 
 export const findReviewsByFoodThunk = createAsyncThunk(
   "findReviewsByFoodThunk",
-  async (idMeal) => findReviewsByFood(idMeal)
+  async (idSong) => findReviewsByFood(idSong)
 );
 
 export const findReviewsByHostThunk = createAsyncThunk(

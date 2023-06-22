@@ -1,5 +1,4 @@
 import { useState } from "react";
-import ReactMarkdown from "react-markdown";
 import { useDispatch } from "react-redux";
 import Button from "react-bootstrap/Button";
 import { createEventThunk } from "./event-thunks";
@@ -13,25 +12,36 @@ import { Alert } from "react-bootstrap";
 const EventCreate = () => {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
+  const [price, setPrice] = useState("");
+  const [date, setDate] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [titleAlert, setTitleAlert] = useState(false);
   const [summaryAlert, setSummaryAlert] = useState(false);
+  const [priceAlert, setPriceAlert] = useState(false);
+  const [dateAlert, setDateAlert] = useState(false);
 
   const createEvent = () => {
     setTitleAlert(false);
     setSummaryAlert(false);
+    setPriceAlert(false);
 
-    if (title === "") {
+    if (title.trim().length === "") {
       setTitleAlert(true);
     } else if (summary === "") {
       setSummaryAlert(true);
+    } else if (price <= 0) {
+      setPriceAlert(true);
+    } else if (date.trim().length === 0 ) {
+      setDateAlert(true);
     } else {
       dispatch(
         createEventThunk({
           title: title,
           description: summary,
+          price: price,
+          date: date
         })
       );
       navigate("/event");
@@ -42,7 +52,7 @@ const EventCreate = () => {
       <Link to={"/event"} className={"text-decoration-none text-secondary"}>
         <i className="bi bi-arrow-left me-1"></i>Back
       </Link>
-      <h2>Create an Event</h2>
+      <h2 className="mt-3">Create an Event</h2>
 
       <Alert
         variant="danger"
@@ -60,11 +70,26 @@ const EventCreate = () => {
       >
         <span>Please enter the description of the event!</span>
       </Alert>
+      <Alert
+        variant="danger"
+        onClose={() => setPriceAlert(false)}
+        className={priceAlert ? "d-block" : "d-none"}
+        dismissible
+      >
+        <span>Please enter the price of the event!</span>
+      </Alert>
+      <Alert
+        variant="danger"
+        onClose={() => setDateAlert(false)}
+        className={dateAlert ? "d-block" : "d-none"}
+        dismissible
+      >
+        <span>Please enter the date of the event!</span>
+      </Alert>
 
       <Container>
-        <span className={"text-muted"}>Create your event here</span>
         <Form>
-          <FloatingLabel controlId="eventTitle" label="Title *" className="mb-3">
+          <FloatingLabel controlId="eventTitle" label="Title *" className="my-3">
             <Form.Control
               type="text"
               value={title}
@@ -72,7 +97,7 @@ const EventCreate = () => {
               onChange={(event) => setTitle(event.target.value)}
             />
           </FloatingLabel>
-          <FloatingLabel controlId="eventBody" label="Body *">
+          <FloatingLabel controlId="eventBody" label="Description *">
             <Form.Control
               as="textarea"
               placeholder="Description"
@@ -81,20 +106,26 @@ const EventCreate = () => {
               onChange={(event) => setSummary(event.target.value)}
             />
           </FloatingLabel>
-          <Form.Text id="passwordHelpBlock" muted>
-            Create your event using Markdown.
-          </Form.Text>
+          <FloatingLabel controlId="eventPrice" label="Price *" className="mt-3">
+            <Form.Control
+              type="number"
+              value={price}
+              placeholder="Price"
+              onChange={(event) => setPrice(event.target.value)}
+            />
+          </FloatingLabel>
+          <FloatingLabel controlId="eventDate" label="Date *" className="mt-3">
+            <Form.Control
+              type="date"
+              value={date}
+              placeholder="Date"
+              onChange={(event) => setDate(event.target.value)}
+            />
+          </FloatingLabel>
         </Form>
 
-        <hr />
-
-        <hr className={"d-block d-md-none"} />
-        <span className={"text-muted"}>Preview</span>
-        <h3>{title}</h3>
-        <ReactMarkdown children={summary} />
-
         <Button onClick={createEvent} className={"mb-3 mt-5"}>
-          Publish Event
+          Create Event
         </Button>
       </Container>
     </div>

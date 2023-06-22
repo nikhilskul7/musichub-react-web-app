@@ -91,51 +91,62 @@ function AdminDashboard() {
 
   return (
     <div className="home">
-      <h2>Monthly New Users</h2>
-      <Chart data={monthlyUserStats} title="" grid dataKey="New Users" />
+    <h2 className="sectionTitle">Monthly New Users</h2>
+    <Chart data={monthlyUserStats} title="" grid dataKey="New Users" />
 
-      {reviews.length > 0 && (
-        <div className="reviews">
-          <h2>All Reviews</h2>
-          <ul>
-            {reviews.map((review) => (
-              <li key={review.id}>
-                <p>{review.review}</p>
-                <Button
-                  variant={"danger"}
-                  className={"me-2"}
-                  onClick={() => handleReviewDelete(review._id)}
-                >
-                  Delete
-                </Button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      
-      {events.length > 0 && (
-        <div className="events">
-          <h2>All Events</h2>
-          <ul>
-            {events.map((event) => (
-              <li key={event._id}>
-                <h5>{event.title}</h5>
-                <p>Host: {event.host.hostName}</p>
-                <p>{event.event}</p>
-                <Button
-                  variant={"danger"}
-                  className={"me-2"}
-                  onClick={() => handleEventDelete(event._id)}
-                >
-                  Delete
-                </Button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+    {reviews.length > 0 && (
+      <div className="reviews">
+        <h2 className="sectionTitle">All Reviews</h2>
+        <ul>
+          {reviews.map((review) => (
+            <li key={review.id}>
+              <p className="reviewText">{review.review}</p>
+              <Button
+                variant="danger"
+                className="deleteButton"
+                onClick={() => handleReviewDelete(review._id)}
+              >
+                Delete
+              </Button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {events.length > 0 && (
+      <div className="events">
+        <h2 className="sectionTitle">All Events</h2>
+        <ul>
+          {events.map((event) => (
+            <li key={event._id}>
+              <h5>{event.title}</h5>
+              <p className="hostText">Host: {event.host.hostName}</p>
+              <p className="eventText">{event.event}</p>
+              <Button
+  variant="danger"
+  className="deleteButton"
+  onClick={() => handleEventDelete(event._id)}
+  style={{
+    backgroundColor: "#f44336",
+    color: "#fff",
+    borderRadius: "4px",
+    padding: "8px 16px",
+    border: "none",
+    fontWeight: "bold",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    cursor: "pointer",
+  }}
+>
+  Delete
+</Button>
+
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
   );
 }
 

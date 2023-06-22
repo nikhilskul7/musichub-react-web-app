@@ -177,9 +177,9 @@ const Register = () => {
             type={"radio"}
             name={"registerRolesRadio"}
             label={`Content Viewer`}
-            value={"Viewer"}
+            value={"CONTENT-VIEWER"}
             id={`registerContentViewer`}
-            checked={role === "VIEWER"}
+            checked={role === "CONTENT-VIEWER"}
             onChange={(event) => setRole(event.target.value)}
           />
           <Form.Check

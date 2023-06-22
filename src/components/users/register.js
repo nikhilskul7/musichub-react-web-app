@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerThunk } from "./users-thunk";
 import { useNavigate } from "react-router";
+import './register-login.css';
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -60,10 +61,13 @@ const Register = () => {
     navigate("/profile");
   }
 
+
   return (
     <>
-      <h2>Register</h2>
-
+      <div className="text-center">
+        <h2>Register</h2>
+        <h6>Fields marked with * are mandatory.</h6>
+      </div>
       <Alert
         variant="danger"
         onClose={() => setFirstNameAlert(false)}
@@ -102,68 +106,69 @@ const Register = () => {
         className={errorRegister ? "d-block" : "d-none"}
         dismissible
       >
-        <Alert.Heading>Username already taken!</Alert.Heading>
+        <Alert.Heading>Username must be unique and this username is already taken!</Alert.Heading>
         <span>Please enter another username.</span>
       </Alert>
 
       {currentUser && <h1>Welcome user: {currentUser.username}</h1>}
 
-      <Form>
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="registerFirstName">
+      <Form className="form-container">
+
+          <Form.Group className="mb-3" controlId="registerFirstName">
             <Form.Label>First Name *</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter first name"
+              placeholder="Tim"
               value={firstname}
               onChange={(event) => setFirstname(event.target.value)}
             />
           </Form.Group>
 
-          <Form.Group as={Col} controlId="registerLastName">
+          <Form.Group className="mb-3" controlId="registerLastName">
             <Form.Label>Last Name *</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter last name"
+              placeholder="Smith"
               value={lastname}
               onChange={(event) => setLastname(event.target.value)}
             />
           </Form.Group>
-        </Row>
+        
 
-        <Form.Group className="mb-3" controlId="registerUsername">
+          <Form.Group className="mb-3" controlId="registerUsername">
           <Form.Label>Username *</Form.Label>
           <Form.Control
-            placeholder="Enter username"
+            placeholder="tim.smith"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
           <Form.Text className={"text-muted"}>
-            Please enter a unique username. Username cannot be changed later on!
+            Once entered, it cannot be changed later on.
           </Form.Text>
-        </Form.Group>
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="registerEmail">
-          <Form.Label>Email</Form.Label>
+          <Form.Group className="mb-3" controlId="registerEmail">
+          <Form.Label>Email *</Form.Label>
           <Form.Control
-            placeholder="Enter email"
+            placeholder="tim.smith@gmail.com"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
-        </Form.Group>
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="registerPassword">
+          <Form.Group className="mb-3" controlId="registerPassword">
           <Form.Label>Password *</Form.Label>
           <Form.Control
-            placeholder="Enter password"
+            placeholder="Tim123"
             value={password}
             type={"password"}
             onChange={(event) => setPassword(event.target.value)}
           />
-        </Form.Group>
+          </Form.Group>
 
-        <Form.Group className="mb-3" id="registerRoles">
+          <Row className="mb-3">
           <Form.Label>Role</Form.Label>
+          <Form.Group as={Col} id="registerRoles">
           <Form.Check
             type={"radio"}
             name={"registerRolesRadio"}
@@ -173,6 +178,8 @@ const Register = () => {
             checked={role === "MUSIC-CREATOR"}
             onChange={(event) => setRole(event.target.value)}
           />
+          </Form.Group>
+          <Form.Group as={Col} id="registerRoles">
           <Form.Check
             type={"radio"}
             name={"registerRolesRadio"}
@@ -182,6 +189,8 @@ const Register = () => {
             checked={role === "CONTENT-VIEWER"}
             onChange={(event) => setRole(event.target.value)}
           />
+          </Form.Group>
+          <Form.Group as={Col} id="registerRoles">
           <Form.Check
             type={"radio"}
             name={"registerRolesRadio"}
@@ -191,20 +200,26 @@ const Register = () => {
             checked={role === "ADMIN"}
             onChange={(event) => setRole(event.target.value)}
           />
-        </Form.Group>
-        <Form.Text>
+          </Form.Group>
+          </Row>
+          <Form.Text>
           Already have an account? <Link to={"/login"}>Login</Link>.
-        </Form.Text>
+          </Form.Text>
 
-        <Button
+          <Button
           className={"w-100 mt-3"}
           variant="primary"
           onClick={() => handleRegisterBtn()}
-        >
+          >
           Create an account
-        </Button>
-      </Form>
-    </>
+          </Button>
+        </Form>
+        </>
   );
+
+
+
+
+
 };
 export default Register;

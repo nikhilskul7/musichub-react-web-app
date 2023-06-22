@@ -3,9 +3,6 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllEventsThunk } from "./event-thunks";
-import { parseTime } from "./parseTime";
-
-
 import "../index.css";
 
 
@@ -30,41 +27,34 @@ const Event = () => {
 
   console.log(event, loading);
   return (
-    <div className="eventListContainer">
-   
-    <h2 className="sectionTitle">Recent Events</h2>
-    <ul className="list-group eventList">
-      {event.map((event) => (
-        <li
-          key={event._id}
-          className={
-            "list-group-item wd-cursor-pointer" +
-            (hoveredEvent === event._id ? " active" : "")
-          }
-          onClick={() => handleEventClick(event._id)}
-          onMouseEnter={() => handleEventHover(event._id)}
-          onMouseLeave={() => handleEventHover(null)}
-        >
-          <h5 className="eventTitle">{event.title}</h5>
-          <div className="eventDetails">
-            <span className="hostName">By: {event.host.hostName}</span>
-            <span className="dotSeparator">&#8226;</span>
-            <span className="eventDate">{parseTime(event.date)}</span>
-          </div>
-        </li>
-      ))}
-    </ul>
-    <br></br>
-    
-    <br></br>
-    {currentUser !== null &&
-      (currentUser.role === "MUSIC-CREATOR" ||
-        currentUser.role === "ADMIN") && (
-        <Button className="createButton" onClick={() => navigate("create")}>
-          Create
-        </Button>
-      )}
-  </div>
+    <div>
+      {currentUser !== null &&
+        (currentUser.role === "MUSIC-CREATOR" || currentUser.role === "ADMIN") && (
+          <Button onClick={() => navigate("create")}>Create</Button>
+        )}
+      <h2 className="mt-4">Recent Event</h2>
+      <ul className={"list-group mt-4"}>
+        {event.map((e) => (
+          <li
+            className={"list-group-item wd-cursor-pointer"}
+            onClick={() => navigate("details/" + e._id)}
+            key={e._id}
+          >
+            <h5>{e.title}</h5>
+
+            <div className={"text-secondary"}>
+              <span>{e.host.hostName}</span>
+              <i className="bi bi-dot"></i>
+              <span>{new Date(e.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 export default Event;

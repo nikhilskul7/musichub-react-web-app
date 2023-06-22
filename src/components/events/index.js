@@ -3,31 +3,17 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllEventsThunk } from "./event-thunks";
-import "../index.css";
+import "./index.css";
 
-const events = [
-  {
-    _id: "123",
-    title: "event1",
-    username: "bob",
-    summary: "this is event 1",
-    date: "2023-12-12",
-  },
-  {
-    _id: "234",
-    title: "event2",
-    username: "alice",
-    summary: "this is event2",
-    date: "2024-04-17",
-  },
-];
 
 const Event = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.users);
   const { event, loading } = useSelector((state) => state.event);
+ 
 
+  
   useEffect(() => {
     dispatch(getAllEventsThunk());
   }, []);
@@ -35,10 +21,7 @@ const Event = () => {
   console.log(event, loading);
   return (
     <div>
-      {currentUser !== null &&
-        (currentUser.role === "MUSIC-CREATOR" || currentUser.role === "ADMIN") && (
-          <Button onClick={() => navigate("create")}>Create</Button>
-        )}
+      
       <h2 className="mt-4">Recent Event</h2>
       <ul className={"list-group mt-4"}>
         {event.map((e) => (
@@ -61,6 +44,12 @@ const Event = () => {
           </li>
         ))}
       </ul>
+      <br></br>
+      <br></br>
+      {currentUser !== null &&
+        (currentUser.role === "MUSIC-CREATOR" || currentUser.role === "ADMIN") && (
+          <Button onClick={() => navigate("create")}>Create</Button>
+        )}
     </div>
   );
 };

@@ -1,3 +1,28 @@
 .wd-cursor-pointer {
     cursor: pointer;
 }
+.navbar-custom {
+    background-color: #01060a;
+    
+  }
+  
+  .brand {
+    font-size: 24px;
+    color: #10d33a;
+    font-weight: bold;
+  }
+  
+  .brand:hover {
+    color: #f1c40f;
+  }
+  
+  .nav-link-custom {
+    color: #10d33a;
+    font-weight: bold;
+    margin-right: 15px;
+  }
+  
+  .nav-link-custom:hover {
+    color: #10d33a;
+  }
+  

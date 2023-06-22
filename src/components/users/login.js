@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "./users-thunk";
 import { Navigate, useNavigate } from "react-router";
+import './register-login.css';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Alert } from "react-bootstrap";
@@ -45,7 +46,9 @@ const Login = () => {
 
   return (
     <>
-      <h2>Login</h2>
+      <div className="text-center">
+        <h2>Login</h2>
+      </div>
 
       <Alert
         variant="danger"
@@ -73,7 +76,7 @@ const Login = () => {
         <span>Username/Password incorrect!</span>
       </Alert>
 
-      <Form>
+      <Form className="form-container">
         <Form.Group className="mb-3" controlId="loginUsername">
           <Form.Label>Username *</Form.Label>
           <Form.Control

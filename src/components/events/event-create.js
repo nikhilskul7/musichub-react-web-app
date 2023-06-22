@@ -8,6 +8,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { Alert } from "react-bootstrap";
+import "./index.css";
 
 const EventCreate = () => {
   const [title, setTitle] = useState("");
@@ -48,43 +49,43 @@ const EventCreate = () => {
     }
   };
   return (
-    <div>
-      <Link to={"/event"} className={"text-decoration-none text-secondary"}>
+<div className="createEventContainer">
+      <Link to="/event" className="backLink">
         <i className="bi bi-arrow-left me-1"></i>Back
       </Link>
       <h2 className="mt-3">Create an Event</h2>
-
+      <h6 className="mt-3">Fields marked with * are mandatory.</h6>
       <Alert
         variant="danger"
         onClose={() => setTitleAlert(false)}
-        className={titleAlert ? "d-block" : "d-none"}
+        show={titleAlert}
         dismissible
       >
-        <span>Please enter the title of the event!</span>
+        Please enter the title of the event!
       </Alert>
       <Alert
         variant="danger"
         onClose={() => setSummaryAlert(false)}
-        className={summaryAlert ? "d-block" : "d-none"}
+        show={summaryAlert}
         dismissible
       >
-        <span>Please enter the description of the event!</span>
+        Please enter the description of the event!
       </Alert>
       <Alert
         variant="danger"
         onClose={() => setPriceAlert(false)}
-        className={priceAlert ? "d-block" : "d-none"}
+        show={priceAlert}
         dismissible
       >
-        <span>Please enter the price of the event!</span>
+        Please enter the price of the event!
       </Alert>
       <Alert
         variant="danger"
         onClose={() => setDateAlert(false)}
-        className={dateAlert ? "d-block" : "d-none"}
+        show={dateAlert}
         dismissible
       >
-        <span>Please enter the date of the event!</span>
+        Please enter the date of the event!
       </Alert>
 
       <Container>
@@ -124,7 +125,7 @@ const EventCreate = () => {
           </FloatingLabel>
         </Form>
 
-        <Button onClick={createEvent} className={"mb-3 mt-5"}>
+        <Button onClick={createEvent} className="submitButton mt-5">
           Create Event
         </Button>
       </Container>

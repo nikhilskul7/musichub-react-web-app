@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllEventsThunk } from "./event-thunks";
-import "../index.css";
+import "./index.css";
 
 
 const Event = () => {
@@ -11,15 +11,8 @@ const Event = () => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.users);
   const { event, loading } = useSelector((state) => state.event);
-  const [hoveredEvent, setHoveredEvent] = useState(null);
+ 
 
-  const handleEventHover = (eventId) => {
-    setHoveredEvent(eventId);
-  };
-
-  const handleEventClick = (eventId) => {
-    navigate("details/" + eventId);
-  };
   
   useEffect(() => {
     dispatch(getAllEventsThunk());
@@ -28,10 +21,7 @@ const Event = () => {
   console.log(event, loading);
   return (
     <div>
-      {currentUser !== null &&
-        (currentUser.role === "MUSIC-CREATOR" || currentUser.role === "ADMIN") && (
-          <Button onClick={() => navigate("create")}>Create</Button>
-        )}
+      
       <h2 className="mt-4">Recent Event</h2>
       <ul className={"list-group mt-4"}>
         {event.map((e) => (
@@ -54,6 +44,12 @@ const Event = () => {
           </li>
         ))}
       </ul>
+      <br></br>
+      <br></br>
+      {currentUser !== null &&
+        (currentUser.role === "MUSIC-CREATOR" || currentUser.role === "ADMIN") && (
+          <Button onClick={() => navigate("create")}>Create</Button>
+        )}
     </div>
   );
 };

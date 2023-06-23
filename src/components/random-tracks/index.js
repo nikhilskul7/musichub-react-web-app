@@ -11,14 +11,14 @@ const RandomTracks = () => {
   useEffect(() => {
     dispatch(getRandomSong());
   }, [dispatch]);
-console.log("here")
+
   console.log(tracks);
 
   return (
     <Row>
-    {/**  {!loading &&
-        tracks.map((track) => <SongCard key={track._id} song={track.title} />)}
-     */}</Row>
+    {/* {!loading &&
+        tracks.map((track) => <SongCard key={track._id} song={track.title} />)} */}
+    </Row>
   );
 };
 

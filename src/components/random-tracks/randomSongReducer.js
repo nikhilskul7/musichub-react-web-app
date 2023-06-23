@@ -14,11 +14,11 @@ const randomSongSlice = createSlice({
     builder
       .addCase(getRandomSong.pending, (state) => {
         state.loading = true;
-        state.recipes = [];
+        state.tracks = [];
       })
       .addCase(getRandomSong.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.recipes = payload;
+        state.tracks = payload;
       });
   },
 });

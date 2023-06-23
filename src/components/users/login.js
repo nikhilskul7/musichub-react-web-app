@@ -47,7 +47,9 @@ const Login = () => {
   return (
     <>
       <div className="text-center">
-        <h2>Login</h2>
+        <h3>Welcome Back!</h3>
+        <h4>Please login with your credentials.</h4>
+        <h6>Fields marked with * are mandatory.</h6>
       </div>
 
       <Alert
@@ -72,15 +74,15 @@ const Login = () => {
         className={loginErrorAlert ? "d-block" : "d-none"}
         dismissible
       >
-        <Alert.Heading>Unable to Login</Alert.Heading>
-        <span>Username/Password incorrect!</span>
+        <Alert.Heading>Unable to Login!</Alert.Heading>
+        <span>Please enter the correct username and password.</span>
       </Alert>
 
       <Form className="form-container">
         <Form.Group className="mb-3" controlId="loginUsername">
           <Form.Label>Username *</Form.Label>
           <Form.Control
-            placeholder="Enter username"
+            //placeholder="Enter username"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
@@ -89,7 +91,7 @@ const Login = () => {
         <Form.Group className="mb-3" controlId="registerEmail">
           <Form.Label>Password *</Form.Label>
           <Form.Control
-            placeholder="Enter password"
+            //placeholder="Enter password"
             type={"password"}
             value={password}
             onChange={(event) => setPassword(event.target.value)}

@@ -1,11 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import * as service from "../../services/event-service";
-import {
-  deleteEvent,
-  getEventsByUserId,
-  getEventsByUserIdService,
-} from "../../services/event-service";
-import { create } from "axios";
+import { deleteEvent, getEventsByUserIdService } from "../../services/event-service";
 
 export const createEventThunk = createAsyncThunk(
   "createEvent",

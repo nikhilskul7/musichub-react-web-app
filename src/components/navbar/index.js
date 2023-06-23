@@ -31,10 +31,10 @@ const NavbarComponent = () => {
   );
 
   return (
-    <Navbar collapseOnSelect expand="md" bg="light" variant="light">
+    <Navbar collapseOnSelect expand="md" variant="dark" className="navbar-custom">
       <Container>
         <Navbar.Brand
-          className="wd-cursor-pointer"
+         className="wd-cursor-pointer brand"
           onClick={() => handleNavbarClick("/")}
         >
           Sputify

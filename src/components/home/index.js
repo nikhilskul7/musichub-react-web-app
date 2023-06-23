@@ -5,7 +5,7 @@ import { findReviewsByHostThunk } from "../reviews/reviews-thunks";
 import { findUserByIdThunk } from "../users/users-thunk";
 import { getEventsByUserIdThunk } from "../events/event-thunks";
 import { parseTime } from "../events/parseTime";
-import RandomRecipes from "../random-recipe";
+import RandomTracks from "../random-recipe";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -93,7 +93,7 @@ const Home = () => {
         )}
 
         <h3>Recommended Tracks</h3>
-        <RandomRecipes />
+        <RandomTracks />
       </div>
     </div>
   );

@@ -4,22 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRandomSong } from "./getRandomSong";
 import SongCard from "../song-card/songCard";
 
-const RandomRecipes = () => {
-  const { recipes, loading } = useSelector((state) => state.randomSongs);
+const RandomTracks = () => {
+  const { tracks, loading } = useSelector((state) => state.randomSongs);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getRandomSong());
   }, [dispatch]);
-
-  console.log(recipes);
+console.log("here")
+  console.log(tracks);
 
   return (
     <Row>
-      {!loading &&
-        recipes.map((recipe) => <SongCard key={recipe.idSong} song={recipe} />)}
-    </Row>
+    {/**  {!loading &&
+        tracks.map((track) => <SongCard key={track._id} song={track.title} />)}
+     */}</Row>
   );
 };
 
-export default RandomRecipes;
+export default RandomTracks;

@@ -23,10 +23,8 @@ const NavbarComponent = () => {
 
   const renderLoggedOutLinks = () => (
     <>
-      <Nav.Link onClick={() => handleNavbarClick("/login")}>Login</Nav.Link>
-      <Nav.Link onClick={() => handleNavbarClick("/register")}>
-        Register
-      </Nav.Link>
+      <Nav.Link onClick={() => handleNavbarClick("/login") } style={{ color: "white" }}>Login</Nav.Link>
+      <Nav.Link onClick={() => handleNavbarClick("/register")} style={{ color: "white" }}> Register</Nav.Link>
     </>
   );
 
@@ -42,13 +40,11 @@ const NavbarComponent = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link onClick={() => handleNavbarClick("/search")}>
-              Tracks
-            </Nav.Link>
-            <Nav.Link onClick={() => handleNavbarClick("/event")}>Event</Nav.Link>
+            <Nav.Link onClick={() => handleNavbarClick("/search")} style={{ color: "white" }}>Tracks</Nav.Link>
+            <Nav.Link onClick={() => handleNavbarClick("/event")} style={{ color: "white" }}>Event</Nav.Link>
 
             {currentUser !== null && currentUser.role === "ADMIN" && (
-              <Nav.Link onClick={() => handleNavbarClick("/admin")}>
+              <Nav.Link onClick={() => handleNavbarClick("/admin")} style={{ color: "white" }}>
                 Admin Dashboard
               </Nav.Link>
             )}

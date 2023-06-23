@@ -3,5 +3,5 @@ import { findNotesBySearchTerm } from "../../services/search-service";
 
 export const findNotesBySearchTermThunk = createAsyncThunk(
   "findNotesBySearchTerm",
-  (term) => findNotesBySearchTerm(term)
+  async(term) => await findNotesBySearchTerm(term)
 );

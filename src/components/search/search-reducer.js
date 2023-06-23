@@ -3,7 +3,7 @@ import { findNotesBySearchTerm } from "../../services/search-service";
 import { findNotesBySearchTermThunk } from "./search-thunks";
 
 const initialState = {
-  recipes: [],
+  tracks: [],
   loading: false,
 };
 
@@ -12,8 +12,10 @@ const searchReducer = createSlice({
   initialState,
   extraReducers: {
     [findNotesBySearchTermThunk.fulfilled]: (state, action) => {
-      state.recipes = action.payload;
+      state.tracks = action.payload;
+      console.log(action.payload);
     },
+
   },
 });
 

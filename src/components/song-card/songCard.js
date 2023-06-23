@@ -14,13 +14,13 @@ const SongCard = ({ song }) => {
   return (
     <Col sm={6} md={6} lg={3}>
       <Card className="mt-2 mb-2 h-100">
-        <Card.Img variant="top" src={song.strSongThumb} />
+        <Card.Img variant="top" src={song.cover_medium} />
         <Card.Body>
-          <Card.Title>{song.strSong}</Card.Title>
+          <Card.Title>{song.title}</Card.Title>
           <Card.Text>
             <h5>
-              <span className="badge bg-secondary">{song.strArea}</span>{" "}
-              <span className="badge bg-secondary">{song.strCategory}</span>
+              <span className="badge bg-secondary">{song.artist}</span>{" "}
+              <span className="badge bg-secondary">{song.album_name}</span>
             </h5>
             <Button onClick={handleClick}>View Details</Button>
           </Card.Text>

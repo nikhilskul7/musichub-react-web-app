@@ -19,7 +19,7 @@ const Search = () => {
   const searchHandle = () => {
     navigate(`/search/${searchTerm}`);
   };
-  console.log(tracks);
+  
   return (
     <>
       <h2>Search</h2>

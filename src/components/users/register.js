@@ -21,6 +21,7 @@ const Register = () => {
 
   const [firstNameAlert, setFirstNameAlert] = useState(false);
   const [lastNameAlert, setLastNameAlert] = useState(false);
+  const [emailAlert, setEmailAlert] = useState(false);
   const [passwordAlert, setPasswordAlert] = useState(false);
   const [usernameAlert, setUsernameAlert] = useState(false);
   const [errorRegisterAlert, setErrorRegisterAlert] = useState(false);
@@ -29,6 +30,7 @@ const Register = () => {
   const handleRegisterBtn = () => {
     setFirstNameAlert(false);
     setLastNameAlert(false);
+    setEmailAlert(false);
     setUsernameAlert(false);
     setPasswordAlert(false);
 
@@ -36,6 +38,8 @@ const Register = () => {
       setFirstNameAlert(true);
     } else if (lastname === "") {
       setLastNameAlert(true);
+    }else if (email === "") {
+      setEmailAlert(true);
     } else if (username === "") {
       setUsernameAlert(true);
     } else if (password === "") {
@@ -65,7 +69,7 @@ const Register = () => {
   return (
     <>
       <div className="text-center">
-        <h2>Register</h2>
+        <h2>Register!</h2>
         <h6>Fields marked with * are mandatory.</h6>
       </div>
       <Alert
@@ -83,6 +87,14 @@ const Register = () => {
         dismissible
       >
         <span>Please enter a last name!</span>
+      </Alert>
+      <Alert
+        variant="danger"
+        onClose={() => setEmailAlert(false)}
+        className={emailAlert ? "d-block" : "d-none"}
+        dismissible
+      >
+        <span>Please enter an email!</span>
       </Alert>
       <Alert
         variant="danger"
@@ -133,6 +145,16 @@ const Register = () => {
               onChange={(event) => setLastname(event.target.value)}
             />
           </Form.Group>
+
+
+          <Form.Group className="mb-3" controlId="registerEmail">
+          <Form.Label>Email *</Form.Label>
+          <Form.Control
+            placeholder="tim.smith@gmail.com"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+          </Form.Group>
         
 
           <Form.Group className="mb-3" controlId="registerUsername">
@@ -143,18 +165,11 @@ const Register = () => {
             onChange={(event) => setUsername(event.target.value)}
           />
           <Form.Text className={"text-muted"}>
-            Once entered, it cannot be changed later on.
+            Username cannot be changed later.
           </Form.Text>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="registerEmail">
-          <Form.Label>Email *</Form.Label>
-          <Form.Control
-            placeholder="tim.smith@gmail.com"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-          </Form.Group>
+          
 
           <Form.Group className="mb-3" controlId="registerPassword">
           <Form.Label>Password *</Form.Label>

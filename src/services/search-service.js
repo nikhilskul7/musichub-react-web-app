@@ -16,13 +16,16 @@ export const findNotesBySearchTerm = async (term) => {
     const obje2=JSON.parse(obj);
     let result = [];
  
-    Object.entries(obje2.data).forEach(prop => result.push({
-      
-      "title": prop[1].title,
-      "cover_medium": prop[1].album.cover_medium,
-      "artist": prop[1].artist.name,
-      "album_name" : prop[1].album.title
-    }));
+    if (obje2.data) {
+      Object.entries(obje2.data).forEach(prop => result.push({
+        "idSong": prop[1].id,
+        "title": prop[1].title,
+        "cover_medium": prop[1].album.cover_medium,
+        "artist": prop[1].artist.name,
+        "album_name": prop[1].album.title,
+        "cover_big": prop[1].album.cover_big
+      }));
+    }
  
    console.log(result);
     return result;

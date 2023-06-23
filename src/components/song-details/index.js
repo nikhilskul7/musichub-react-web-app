@@ -42,6 +42,7 @@ const SongDetails = () => {
 
   useEffect(() => {
     dispatch(songDetailsThunks(mid));
+
     dispatch(findReviewsByNotesThunk(mid));
   }, []);
 
@@ -96,27 +97,6 @@ const SongDetails = () => {
     navigate(-2);
   }
 
-  const ingredientList = [20];
-  ingredientList[0] = song.strMeasure1 + " " + song.strIngredient1;
-  ingredientList[1] = song.strMeasure2 + " " + song.strIngredient2;
-  ingredientList[2] = song.strMeasure3 + " " + song.strIngredient3;
-  ingredientList[3] = song.strMeasure4 + " " + song.strIngredient4;
-  ingredientList[4] = song.strMeasure5 + " " + song.strIngredient5;
-  ingredientList[5] = song.strMeasure6 + " " + song.strIngredient6;
-  ingredientList[6] = song.strMeasure7 + " " + song.strIngredient7;
-  ingredientList[7] = song.strMeasure8 + " " + song.strIngredient8;
-  ingredientList[8] = song.strMeasure9 + " " + song.strIngredient9;
-  ingredientList[9] = song.strMeasure10 + " " + song.strIngredient10;
-  ingredientList[10] = song.strMeasure11 + " " + song.strIngredient11;
-  ingredientList[11] = song.strMeasure12 + " " + song.strIngredient12;
-  ingredientList[12] = song.strMeasure13 + " " + song.strIngredient13;
-  ingredientList[13] = song.strMeasure14 + " " + song.strIngredient14;
-  ingredientList[14] = song.strMeasure15 + " " + song.strIngredient15;
-  ingredientList[15] = song.strMeasure16 + " " + song.strIngredient16;
-  ingredientList[16] = song.strMeasure17 + " " + song.strIngredient17;
-  ingredientList[17] = song.strMeasure18 + " " + song.strIngredient18;
-  ingredientList[18] = song.strMeasure19 + " " + song.strIngredient19;
-  ingredientList[19] = song.strMeasure20 + " " + song.strIngredient20;
   return (
     <div className={"mt-3"}>
       <div className={"mb-2"}>
@@ -130,10 +110,10 @@ const SongDetails = () => {
       </div>
       {!loading && (
         <>
-          <h2>{song.strSong}</h2>
+          <h2>{song.title}</h2>
           <h5>
-            <span className="badge bg-secondary">{song.strArea}</span>{" "}
-            <span className="badge bg-secondary">{song.strCategory}</span>
+            <span className="badge bg-secondary">{song.artist}</span>{" "}
+            <span className="badge bg-secondary">{song.album_name}</span>
             <span
               className="wd-float-right wd-font-size-15px"
               disabled={!currentUser}
@@ -154,40 +134,22 @@ const SongDetails = () => {
           <Container>
             <Row>
               <Col sm={"12"} md={"6"}>
+
                 <img
                   className={"w-100 mb-3"}
-                  alt={"Picture of " + song.strSong}
-                  src={song.strSongThumb}
+                  alt={"Picture of " + song.title}
+                  src={song.cover_big}
                 />
 
-                <h4>Youtube Video:</h4>
-                {song.strYoutube && (
-                  <YoutubeEmbed
-                    embedId={song.strYoutube.substring(
-                      song.strYoutube.indexOf("=") + 1
-                    )}
-                  />
+                <h4>MP3:</h4>
+                {song.preview && (
+                  <audio controls>
+                    <source src={song.preview} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                  </audio>
                 )}
               </Col>
-              <Col>
-                <h4>Ingredients:</h4>
-                <ul>
-                  {ingredientList.map(
-                    (u) => !u.includes("null") && u.length > 2 && <li>{u}</li>
-                  )}
-                </ul>
-                <h4>Instructions:</h4>
-                <ol>
-                  {typeof song.strInstructions !== "undefined" &&
-                    song.strInstructions
-                      .split("\r\n")
-                      .map(
-                        (u) =>
-                          u.length > 4 &&
-                          !u.toLowerCase().includes("step") && <li>{u}</li>
-                      )}
-                </ol>
-              </Col>
+
             </Row>
           </Container>
           <hr />

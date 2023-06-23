@@ -9,7 +9,7 @@ const Search = () => {
   const { searchName } = useParams();
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState(searchName || "");
-  const { recipes, loading } = useSelector((state) => state.search);
+  const { tracks, loading } = useSelector((state) => state.search);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const Search = () => {
   const searchHandle = () => {
     navigate(`/search/${searchTerm}`);
   };
-
+  console.log(tracks);
   return (
     <>
       <h2>Search</h2>
@@ -36,8 +36,9 @@ const Search = () => {
         />
       </div>
       <Row>
-        {recipes &&
-          recipes.map((song) => <SongCard song={song} key={song.idSong} />)}
+        
+        {tracks &&
+          tracks.map((song) => <SongCard song={song} key={song.idSong} />)}
       </Row>
     </>
   );

@@ -5,7 +5,7 @@ import { findReviewsByHostThunk } from "../reviews/reviews-thunks";
 import { findUserByIdThunk } from "../users/users-thunk";
 import { getEventsByUserIdThunk } from "../events/event-thunks";
 import { parseTime } from "../events/parseTime";
-import RandomTracks from "../random-recipe";
+import RandomTracks from "../random-tracks";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const Home = () => {
             <h4>Recent Events</h4>
             <ul className="list-group mb-3">
               {event && event.length === 0 ? (
-                <p>This user hasn't written any events.</p>
+                <p>This user hasn't created any events.</p>
               ) : (
                 event
                   .filter((bg) => bg.host.hostName === currentUser.username)
@@ -50,7 +50,11 @@ const Home = () => {
                       <div className="text-secondary">
                         <span>By: {e.host.hostName}</span>
                         <i className="bi bi-dot"></i>
-                        <span>{parseTime(e.date)}</span>
+                        <span>{new Date(e.date).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                        })}</span>
                       </div>
                     </li>
                   ))
@@ -82,7 +86,7 @@ const Home = () => {
                     </span>
                     <span>
                       <i className="bi bi-dot"></i>
-                      {parseTime(u.date)}
+                      {parseTime(u.time)}
                     </span>
                     <p>{u.review}</p>
                   </li>

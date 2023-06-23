@@ -18,7 +18,7 @@ import EventCreate from "./components/events/event-create";
 import EventDetails from "./components/events/event-details";
 import ProtectedEventCreate from "./components/events/protected-event-create";
 import searchReducer from "./components/search/search-reducer";
-import randomSongReducer from "./components/random-recipe/randomSongReducer";
+import randomSongReducer from "./components/random-tracks/randomSongReducer";
 import songDetailsReducer from "./components/song-details/song-details-reducer";
 import EventReducer from "./components/events/event-reducer";
 import usersReducer from "./components/users/users-reducer";

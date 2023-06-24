@@ -122,7 +122,7 @@ const Profile = () => {
               src={
                 currentUser.profilePic
                   ? currentUser.profilePic
-                  : 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'
+                  : 'https://robohash.org/1.png'
               }
               alt="profileImg"
               width="148px"
@@ -134,7 +134,9 @@ const Profile = () => {
           )}
 
           <h5>
-            <Badge bg="secondary">{currentUser.role}</Badge>
+            <Badge bg={'secondary'}>
+              {currentUser.role === 'MUSIC-CREATOR' ? 'EVENT-MANAGER' : currentUser.role}
+            </Badge>
           </h5>
 
           <Form>
@@ -286,12 +288,16 @@ const Profile = () => {
 
                 <Form.Group as={Row} className="mb-3" controlId="adminFromDate">
                   <Form.Label column sm="2" className={'text-secondary'}>
-                    Profile Picture
+                    Admin Since
                   </Form.Label>
                   <Col sm="10">
                     <Form.Control
                       type="text"
-                      value={currentUser.adminFromDate}
+                      value={new Date(currentUser.adminFromDate).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
                       readOnly
                       plaintext
                     />
@@ -326,7 +332,7 @@ const Profile = () => {
             <h2>Events</h2>
             <ul className={'list-group mb-3'}>
               {event && event.length === 0 ? (
-                <p>This user haven't written any event.</p>
+                <p>This user haven't created any event.</p>
               ) : (
                 event
                   .filter((bg) => bg.host.hostName === currentUser.username)
@@ -365,7 +371,7 @@ const Profile = () => {
         <h2>Reviews</h2>
         <ul className={'list-group mb-3'}>
           {currentUser && reviews && reviews.length === 0 ? (
-            <p>This user haven't posted any comments yet.</p>
+            <p>This user haven't posted any reviews yet.</p>
           ) : (
             reviews.map((u) => (
               <li

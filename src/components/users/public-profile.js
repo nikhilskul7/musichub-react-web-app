@@ -82,7 +82,7 @@ const PublicProfile = () => {
               src={
                 publicProfile.profilePic
                   ? publicProfile.profilePic
-                  : 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'
+                  : 'https://robohash.org/1.png'
               }
               alt="profileImg"
               width="148px"
@@ -95,7 +95,9 @@ const PublicProfile = () => {
           <h2>@{publicProfile.username}</h2>
 
           <h5>
-            <Badge bg={'secondary'}>{publicProfile.role}</Badge>
+            <Badge bg={'secondary'}>
+              {publicProfile.role === 'MUSIC-CREATOR' ? 'EVENT-MANAGER' : publicProfile.role}
+            </Badge>
           </h5>
           <Container>
             <Form>
@@ -190,12 +192,16 @@ const PublicProfile = () => {
                     controlId="adminFromDate"
                   >
                     <Form.Label column sm="2" className={'text-secondary'}>
-                      Profile Picture
+                      Admin Since
                     </Form.Label>
                     <Col sm="10">
                       <Form.Control
                         type="text"
-                        value={currentUser.adminFromDate}
+                        value={new Date(currentUser.adminFromDate).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
                         readOnly
                         plaintext
                       />

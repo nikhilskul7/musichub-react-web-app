@@ -96,18 +96,19 @@ function AdminDashboard() {
 
     {reviews.length > 0 && (
       <div className="reviews">
-        <h2 className="sectionTitle">All Reviews</h2>
-        <ul>
+        <h2 className="sectionTitle mt-4">All Reviews</h2>
+        <ul className="list-group" style={{ maxWidth: "900px" }}>
           {reviews.map((review) => (
-            <li key={review.id}>
+            <li key={review.id} className="list-group-item d-flex align-items-center">
               <p className="reviewText">{review.review}</p>
-              <Button
-                variant="danger"
-                className="deleteButton"
-                onClick={() => handleReviewDelete(review._id)}
-              >
-                Delete
-              </Button>
+              <div className="ms-auto">
+                <Button
+                  className="deleteButton btn btn-danger btn-sm"
+                  onClick={() => handleReviewDelete(review._id)}
+                >
+                  Delete
+                </Button>
+              </div>
             </li>
           ))}
         </ul>
@@ -116,34 +117,26 @@ function AdminDashboard() {
 
     {events.length > 0 && (
       <div className="events">
-        <h2 className="sectionTitle">All Events</h2>
-        <ul>
-          {events.map((event) => (
-            <li key={event._id}>
-              <h5>{event.title}</h5>
-              <p className="hostText">Host: {event.host.hostName}</p>
-              <p className="eventText">{event.event}</p>
-              <Button
-  variant="danger"
-  className="deleteButton"
-  onClick={() => handleEventDelete(event._id)}
-  style={{
-    backgroundColor: "#f44336",
-    color: "#fff",
-    borderRadius: "4px",
-    padding: "8px 16px",
-    border: "none",
-    fontWeight: "bold",
-    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-    cursor: "pointer",
-  }}
->
-  Delete
-</Button>
-
-            </li>
-          ))}
-        </ul>
+        <h2 className="sectionTitle mt-4">All Events</h2>
+          <ul className="list-group" style={{ maxWidth: "900px" }}>
+            {events.map((event) => (
+              <li key={event._id} className="list-group-item d-flex align-items-center">
+                <div>
+                  <h5 className="mt-3">{event.title}</h5>
+                  <p className="hostText">Host: {event.host.hostName}</p>
+                  <p className="eventText">{event.event}</p>
+                </div>
+                <div className="ms-auto">
+                  <Button
+                    className="deleteButton btn btn-danger btn-sm"
+                    onClick={() => handleEventDelete(event._id)}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </li>
+            ))}
+          </ul>
       </div>
     )}
   </div>

@@ -187,7 +187,7 @@ const Register = () => {
           <Form.Check
             type={"radio"}
             name={"registerRolesRadio"}
-            label={`Music-Creator`}
+            label={`Event-Manager`}
             value={"MUSIC-CREATOR"}
             id={`registerRoleCreator`}
             checked={role === "MUSIC-CREATOR"}

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_API_URL = process.env.REACT_API_BASE || "http://localhost:4000";
+const BASE_API_URL = process.env.REACT_API_BASE;
 const EVENT_API = BASE_API_URL + "/event";
 
 const api = axios.create({ withCredentials: true });

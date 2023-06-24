@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_API_URL = process.env.REACT_API_BASE || "http://localhost:4000";
+const BASE_API_URL = process.env.REACT_API_BASE;
 const USERS_URL = BASE_API_URL + "/users";
 const LIKES_URL = USERS_URL + "/likes";
 

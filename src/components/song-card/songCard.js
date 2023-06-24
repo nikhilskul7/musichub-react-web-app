@@ -10,7 +10,7 @@ const SongCard = ({ song }) => {
   const handleClick = () => {
     navigate(`/song/details/${song.idSong}`);
   };
-
+  
   return (
     <Col sm={6} md={6} lg={3} className="mb-4">
       <Card className="mt-4 mb-4 h-100">

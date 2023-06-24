@@ -27,7 +27,7 @@ export const findNotesBySearchTerm = async (term) => {
       }));
     }
  
-   console.log(result);
+  
     return result;
   } catch (error) {
     console.error(error);

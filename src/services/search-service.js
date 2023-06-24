@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const SEARCH_URL = process.env.REACT_SEARCH_URL;
+const SEARCH_URL = process.env.REACT_APP_SEARCH_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const findNotesBySearchTerm = async (term) => {

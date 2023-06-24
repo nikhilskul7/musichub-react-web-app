@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const SEARCH_URL = process.env.REACT_SONG_DETAILS || "https://deezerdevs-deezer.p.rapidapi.com/track/";
+const SEARCH_URL = process.env.REACT_APP_SONG_DETAILS;
 
 export const songDetailsService = async (mid) => {
   

@@ -1,19 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { userLikesNotesThunk } from "./likes-thunks";
+import { userLikesSongsThunk } from "./likes-thunks";
 
 const Likes = ({ uid, p1, p2 }) => {
-  const likes = [uid];
+  const likes = useSelector((state) => state.likes.likes);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(userLikesNotesThunk(uid));
-  }, []);
+    dispatch(userLikesSongsThunk(uid));
+  }, [dispatch, uid]);
   return (
     <>
       <h2>Likes</h2>
       <div className="list-group">
         {likes.map((like) => (
-          <div>
+          <div key={like._id}>
             <pre>{JSON.stringify(like, null, 2)}</pre>
           </div>
         ))}

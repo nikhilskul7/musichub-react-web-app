@@ -1,37 +1,43 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { parseTime } from "../events/parseTime";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteReviewThunk,
-  updateReviewThunk,
-} from "../reviews/reviews-thunks";
 import "../index.css";
 
-const CommentComponent = ({ rerender, u }) => {
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+
+import { parseTime } from "../events/parseTime";
+import { deleteReviewThunk, updateReviewThunk } from "../reviews/reviews-thunks";
+
+
+const ReviewComponent = ({ rerender, u }) => {
   const { currentUser } = useSelector((event) => event.users);
   const [editable, setEditable] = useState(false);
-  const [editComment, setEditComment] = useState(u.review);
+  const [editReview, setEditReview] = useState(u.review);
   const dispatch = useDispatch();
-  const updateCommentHandle = () => {
-    const newComment = {
+  const updateReviewHandle = () => {
+    const newReview = {
       ...u,
-      review: editComment,
+      review: editReview,
     };
-    dispatch(updateReviewThunk(newComment));
+    dispatch(updateReviewThunk(newReview));
     setEditable(false);
   };
 
-  const deleteCommentHandle = () => {
-    dispatch(deleteReviewThunk(u._id));
-    setEditable(false);
+  const deleteReviewHandle = () => {
+    dispatch(deleteReviewThunk(u._id))
+    .then(() => {
+      setEditable(false);
+      rerender();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
 
   return (
     <li className={"list-group-item"}>
-      {!editable && currentUser && currentUser._id === u.author._id && (
+      {!editable && currentUser && currentUser._id === u.host._id && (
         <h5>
           <i
             className="bi bi-pencil-fill float-end wd-cursor-pointer"
@@ -41,8 +47,8 @@ const CommentComponent = ({ rerender, u }) => {
       )}
 
       <span className={"fw-bold"}>
-        <Link className={"text-black"} to={`/profile/${u.author._id}`}>
-          {u.author.username}
+        <Link className={"text-black"} to={`/profile/${u.host._id}`}>
+          {u.host.username}
         </Link>
       </span>
       <span>
@@ -53,21 +59,21 @@ const CommentComponent = ({ rerender, u }) => {
         <>
           <Form.Control
             className={"mb-2 mt-2"}
-            onChange={(event) => setEditComment(event.target.value)}
+            onChange={(event) => setEditReview(event.target.value)}
             as="textarea"
-            value={editComment}
+            value={editReview}
           />
           <Button
             variant={"primary"}
             className={"me-2"}
-            onClick={updateCommentHandle}
+            onClick={updateReviewHandle}
           >
             Update
           </Button>
           <Button
             variant={"danger"}
             className={"me-2"}
-            onClick={deleteCommentHandle}
+            onClick={deleteReviewHandle}
           >
             Delete
           </Button>
@@ -82,4 +88,4 @@ const CommentComponent = ({ rerender, u }) => {
   );
 };
 
-export default CommentComponent;
+export default ReviewComponent;

@@ -1,29 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import "./index.css";
+
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useDispatch, useSelector } from "react-redux";
-import { songDetailsThunks } from "./song-details-thunks";
-import YoutubeEmbed from "./youtube-embed";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-import {
-  createReviewThunk,
-  findReviewsByNotesThunk,
-} from "../reviews/reviews-thunks";
-import { userLikesNotesThunk } from "../likes/likes-thunks";
-import CommentComponent from "./comment-component";
-import Container from "react-bootstrap/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faStar } from "@fortawesome/free-regular-svg-icons";
-import {
-  faHeart as faSolidHeart,
-  faStar as faSolidStar,
-} from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
-import "./index.css";
+import { faStar } from "@fortawesome/free-regular-svg-icons";
+import { faStar as faSolidStar } from "@fortawesome/free-solid-svg-icons";
+
+import { songDetailsThunks } from "./song-details-thunks";
+import { createReviewThunk, findReviewsBySongsThunk } from "../reviews/reviews-thunks";
+import { userLikesSongsThunk } from "../likes/likes-thunks";
+import YoutubeEmbed from "./youtube-embed";
+import ReviewComponent from "./review-component";
+
 
 const BASE_API_URL = process.env.REACT_API_BASE || "http://localhost:4000";
 const USERS_URL = BASE_API_URL + "/users";
@@ -36,28 +33,29 @@ const SongDetails = () => {
   const { reviews } = useSelector((state) => state.reviews);
   const dispatch = useDispatch();
   const { mid } = useParams();
-  const [comment, setComment] = useState("");
+  const [review, setReview] = useState("");
   const [liked, setLiked] = useState(false);
   const [userLikes, setUserLikes] = useState([]);
 
   useEffect(() => {
     dispatch(songDetailsThunks(mid));
 
-    dispatch(findReviewsByNotesThunk(mid));
+    dispatch(findReviewsBySongsThunk(mid));
   }, []);
 
-  const postSongComment = () => {
-    const review = {
-      idSong: song.idSong,
-      review: comment,
+  const postSongReview = () => {
+    const postReview = {
+      idSong: song.id,
+      review: review,
     };
-    dispatch(createReviewThunk(review));
-    setComment("");
-    dispatch(findReviewsByNotesThunk(mid));
+    dispatch(createReviewThunk(postReview));
+    setReview("");
+    dispatch(findReviewsBySongsThunk(mid));
+    reloadReviews();
   };
 
-  const reloadComments = () => {
-    dispatch(findReviewsByNotesThunk(mid));
+  const reloadReviews = () => {
+    dispatch(findReviewsBySongsThunk(mid));
   };
 
   useEffect(() => {
@@ -65,26 +63,27 @@ const SongDetails = () => {
       api.get(`${USERS_URL}/${currentUser._id}/likes`).then((response) => {
         setUserLikes(response.data);
         const isLiked = response.data.some(
-          (like) => like.idSong === song.idSong && like.liked
+          (like) => like.idSong === song.id && like.liked
         );
         setLiked(isLiked);
       });
     }
-  }, [currentUser, song.idSong]);
+  }, [currentUser, song.id]);
 
   const toggleSongLike = () => {
     if (!liked) {
       const like = {
-        idSong: song.idSong,
+        idSong: song.id,
+        liked: true
       };
-      dispatch(userLikesNotesThunk(like));
+      dispatch(userLikesSongsThunk(like));
       setLiked(true);
     } else {
       api
-        .delete(`${USERS_URL}/${currentUser._id}/likes/${song.idSong}`)
+        .delete(`${USERS_URL}/${currentUser._id}/likes/${song.id}`)
         .then(() => {
           setLiked(false);
-          setUserLikes(userLikes.filter((like) => like.idSong !== song.idSong));
+          setUserLikes(userLikes.filter((like) => like.idSong !== song.id));
         })
         .catch((error) => console.log(error));
     }
@@ -155,7 +154,7 @@ const SongDetails = () => {
           <hr />
 
           <h4>
-            Comments
+            Reviews
             <span className={"text-secondary"}>
               <i className="bi bi-dot"></i>
               {reviews.length}
@@ -167,13 +166,13 @@ const SongDetails = () => {
                 <Form.Group className={"mb-2"}>
                   <FloatingLabel
                     controlId="floatingTextarea2"
-                    label="Leave a comment here"
+                    label="Write a review here"
                   >
                     <Form.Control
                       as="textarea"
-                      placeholder="Leave a comment here"
-                      value={comment}
-                      onChange={(event) => setComment(event.target.value)}
+                      placeholder="Write a review here"
+                      value={review}
+                      onChange={(event) => setReview(event.target.value)}
                       style={{ height: "6rem" }}
                     />
                   </FloatingLabel>
@@ -182,20 +181,20 @@ const SongDetails = () => {
 
                 <Button
                   variant="primary"
-                  onClick={() => postSongComment()}
-                  disabled={comment === ""}
+                  onClick={() => postSongReview()}
+                  disabled={review === ""}
                 >
-                  Post Comment
+                  Post Review
                 </Button>
               </Form>
             ) : (
               <Alert variant={"warning"} className={"mb-3"}>
-                Please login to comment.
+                Please login to post review.
               </Alert>
             )}
             <ul className={"list-group mb-3 mt-3"}>
               {reviews.map((u) => (
-                <CommentComponent u={u} rerender={reloadComments} key={u._id} />
+                <ReviewComponent u={u} rerender={reloadReviews} key={u._id} />
               ))}
             </ul>
           </Container>

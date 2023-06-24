@@ -1,9 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  findUserByIdThunk,
-  logoutThunk,
-  updateProfileThunk,
-} from './users-thunk';
+import { findUserByIdThunk, logoutThunk, updateProfileThunk } from './users-thunk';
 import { useNavigate } from 'react-router';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -13,11 +9,8 @@ import { useEffect, useState } from 'react';
 import { Alert, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { findReviewsByHostThunk } from '../reviews/reviews-thunks';
-import {
-  findFollowersThunk,
-  findFollowingThunk,
-} from '../follows/follows-thunks';
-import { userLikesNotesThunk } from '../likes/likes-thunks';
+import { findFollowersThunk, findFollowingThunk } from '../follows/follows-thunks';
+import { userLikesSongsThunk } from '../likes/likes-thunks';
 import { parseTime } from '../events/parseTime';
 import Follows from '../follows/follows';
 import { getEventsByUserIdThunk } from '../events/event-thunks';
@@ -347,14 +340,18 @@ const Profile = () => {
 
                       <i
                         onClick={() => {
-                          dispatch(userLikesNotesThunk());
+                          dispatch(userLikesSongsThunk());
                         }}
                         className="red"
                       ></i>
                       <div className={'text-secondary'}>
                         <span>By: {e.host.hostName}</span>
                         <i className="bi bi-dot"></i>
-                        <span>{parseTime(e.date)}</span>
+                        <span>{new Date(e.date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}</span>
                       </div>
                     </li>
                   ))
@@ -365,7 +362,7 @@ const Profile = () => {
 
         <Follows uid={currentUser._id} />
 
-        <h2>Comments</h2>
+        <h2>Reviews</h2>
         <ul className={'list-group mb-3'}>
           {currentUser && reviews && reviews.length === 0 ? (
             <p>This user haven't posted any comments yet.</p>
@@ -385,7 +382,7 @@ const Profile = () => {
                 </span>
                 <span>
                   <i className="bi bi-dot"></i>
-                  {parseTime(u.date)}
+                  {parseTime(u.time)}
                 </span>
                 <p>{u.review}</p>
               </li>

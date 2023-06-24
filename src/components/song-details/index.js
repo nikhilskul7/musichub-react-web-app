@@ -38,8 +38,8 @@ const SongDetails = () => {
 
   useEffect(() => {
     dispatch(songDetailsThunks(mid));
-
     dispatch(findReviewsBySongsThunk(mid));
+    dispatch(userLikesSongsThunk(mid));
   }, []);
 
   const postSongReview = () => {

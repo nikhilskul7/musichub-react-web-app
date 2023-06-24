@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import Container from "react-bootstrap/Container";
@@ -42,7 +42,7 @@ const store = configureStore({
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter>
         <CurrentUser>
           <Navbar />
           <Container className={"mt-3 mb-3"}>
@@ -84,7 +84,7 @@ function App() {
             </Routes>
           </Container>
         </CurrentUser>
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   );
 }

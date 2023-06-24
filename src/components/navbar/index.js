@@ -16,8 +16,8 @@ const NavbarComponent = () => {
 
   const renderLoggedInLinks = () => (
     <>
-      <Nav.Link onClick={() => handleNavbarClick("/profile")}>Profile</Nav.Link>
-      <Nav.Link disabled={true}>Logged in as {currentUser.username}</Nav.Link>
+      <Nav.Link onClick={() => handleNavbarClick("/profile") } style={{ color: "white" }}>Profile</Nav.Link>
+      <Nav.Link disabled={true} style={{ color: "white" }}>Logged in as {currentUser.username}</Nav.Link>
     </>
   );
 

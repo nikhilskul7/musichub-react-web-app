@@ -27,7 +27,7 @@ const Home = () => {
       <div className="container">
         {currentUser && (
           <h1>
-            Welcome {currentUser.role.toLowerCase()} {currentUser.username}!
+            Welcome {currentUser.firstName}!
           </h1>
         )}
 

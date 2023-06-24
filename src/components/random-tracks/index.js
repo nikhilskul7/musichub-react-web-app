@@ -12,12 +12,12 @@ const RandomTracks = () => {
     dispatch(getRandomSong());
   }, [dispatch]);
 
-  console.log(tracks);
+  
 
   return (
     <Row>
-    {/* {!loading &&
-        tracks.map((track) => <SongCard key={track._id} song={track.title} />)} */}
+      {tracks &&
+        tracks.map((track) => <SongCard song={track} key={track.id} />)}   
     </Row>
   );
 };

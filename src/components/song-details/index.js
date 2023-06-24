@@ -18,7 +18,6 @@ import { faStar as faSolidStar } from "@fortawesome/free-solid-svg-icons";
 import { songDetailsThunks } from "./song-details-thunks";
 import { createReviewThunk, findReviewsBySongsThunk } from "../reviews/reviews-thunks";
 import { userLikesSongsThunk } from "../likes/likes-thunks";
-import YoutubeEmbed from "./youtube-embed";
 import ReviewComponent from "./review-component";
 
 

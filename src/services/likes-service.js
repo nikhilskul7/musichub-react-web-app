@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_API_URL = process.env.REACT_API_BASE;
+const BASE_API_URL = process.env.REACT_APP_BASE;
 const USERS_URL = BASE_API_URL + "/users";
 const LIKES_URL = USERS_URL + "/likes";
 

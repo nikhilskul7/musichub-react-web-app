@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_API_URL = process.env.REACT_API_BASE;
+const BASE_API_URL = process.env.REACT_APP_BASE;
 const FOLLOWS_API = BASE_API_URL + "/follows";
 const USERS_API = BASE_API_URL + "/users";
 

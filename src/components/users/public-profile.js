@@ -254,38 +254,10 @@ const PublicProfile = () => {
 
             <Follows uid={publicProfile._id} />
 
-            {/*<h2>Following</h2>*/}
-            {/*<div className="list-group">*/}
-            {/*    {*/}
-            {/*        following &&*/}
-            {/*        following.length > 0 ?*/}
-            {/*            following.map((follow) =>*/}
-            {/*                                       <Link to={`/profile/${follow.following._id}`} className="list-group-item">*/}
-            {/*                                           {follow.following.username}*/}
-            {/*                                       </Link>*/}
-            {/*                  )*/}
-            {/*            :*/}
-            {/*            <p>This user haven't followed anyone .</p>*/}
-            {/*    }*/}
-            {/*</div>*/}
-            {/*<h2>Followers</h2>*/}
-            {/*<div className="list-group">*/}
-            {/*    {*/}
-            {/*        followers &&*/}
-            {/*        followers.length > 0 ? followers.map((follow) =>*/}
-            {/*                                       <Link to={`/profile/${follow.followers._id}`} className="list-group-item">*/}
-            {/*                                           {follow.followers.username}*/}
-            {/*                                       </Link>*/}
-            {/*                  )*/}
-            {/*            :*/}
-            {/*            <p>This user don't have followers yet.</p>*/}
-            {/*    }*/}
-            {/*</div>*/}
-
-            <h2>Comments</h2>
+            <h2>Reviews</h2>
             <ul className={'list-group'}>
               {publicProfile && reviews && reviews.length === 0 ? (
-                <p>This user haven't posted any comments yet.</p>
+                <p>This user haven't posted any reviews yet.</p>
               ) : (
                 reviews
                   .filter((u) => u.host._id === uid)
@@ -304,7 +276,7 @@ const PublicProfile = () => {
                       </span>
                       <span>
                         <i className="bi bi-dot"></i>
-                        {parseTime(u.date)}
+                        {parseTime(u.time)}
                       </span>
                       <p>{u.review}</p>
                     </li>

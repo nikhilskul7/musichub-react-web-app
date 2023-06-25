@@ -2,31 +2,32 @@ import axios from "axios";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-const SEARCH_URL1 = "https://deezerdevs-deezer.p.rapidapi.com/track/623698142";
-const SEARCH_URL2 = "https://deezerdevs-deezer.p.rapidapi.com/track/2299840635";
-const SEARCH_URL3 = "https://deezerdevs-deezer.p.rapidapi.com/track/1977132317";
-const SEARCH_URL4 = "https://deezerdevs-deezer.p.rapidapi.com/track/2105158337";
+const TOP_URL1 = "https://deezerdevs-deezer.p.rapidapi.com/track/2299840635";
+const TOP_URL2 = "https://deezerdevs-deezer.p.rapidapi.com/track/2216207477";
+const TOP_URL3 = "https://deezerdevs-deezer.p.rapidapi.com/track/2210576197";
+const TOP_URL4 = "https://deezerdevs-deezer.p.rapidapi.com/track/2105158337";
+
 
 const fetchRandomSong = async () => {
-  const response1 = await axios.get(`${SEARCH_URL1}`, {
+  const response1 = await axios.get(`${TOP_URL1}`, {
     headers: {
       'X-RapidAPI-Key': API_KEY, 
       'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
     },
   });
-  const response2 = await axios.get(`${SEARCH_URL2}`, {
+  const response2 = await axios.get(`${TOP_URL2}`, {
     headers: {
       'X-RapidAPI-Key': API_KEY, 
       'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
     },
   });
-  const response3 = await axios.get(`${SEARCH_URL3}`, {
+  const response3 = await axios.get(`${TOP_URL3}`, {
     headers: {
       'X-RapidAPI-Key': API_KEY, 
       'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
     },
   });
-  const response4 = await axios.get(`${SEARCH_URL4}`, {
+  const response4 = await axios.get(`${TOP_URL4}`, {
     headers: {
       'X-RapidAPI-Key': API_KEY, 
       'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
@@ -40,10 +41,6 @@ const fetchRandomSong = async () => {
   let result1 = [];
 
   if (obje2) {
-    /**Object.entries(obje2).forEach(prop => result.push({
-      "idSong": prop.id
-     
-    }));**/
     result1.idSong=obje2.id;
     result1.title= obje2.title;
     result1.artist=obje2.artist.name;
@@ -58,10 +55,6 @@ const fetchRandomSong = async () => {
   let result2 = [];
 
   if (obje2R1) {
-    /**Object.entries(obje2).forEach(prop => result.push({
-      "idSong": prop.id
-     
-    }));**/
     result2.idSong=obje2R1.id;
     result2.title= obje2R1.title;
     result2.artist=obje2R1.artist.name;
@@ -78,10 +71,6 @@ const fetchRandomSong = async () => {
   let result3 = [];
 
   if (obje2R3) {
-    /**Object.entries(obje2).forEach(prop => result.push({
-      "idSong": prop.id
-     
-    }));**/
     result3.idSong=obje2R3.id;
     result3.title= obje2R3.title;
     result3.artist=obje2R3.artist.name;
@@ -96,10 +85,6 @@ const fetchRandomSong = async () => {
   let result4 = [];
 
   if (obje2R4) {
-    /**Object.entries(obje2).forEach(prop => result.push({
-      "idSong": prop.id
-     
-    }));**/
     result4.idSong=obje2R4.id;
     result4.title= obje2R4.title;
     result4.artist=obje2R4.artist.name;
@@ -108,16 +93,7 @@ const fetchRandomSong = async () => {
     result4.preview = obje2R4.preview;
   }
 
-  
-  
-  
-  
-  
-  const returnSongs=[ result1,
-    result2,
-    result3,
-    result4];
-  
+  const returnSongs=[ result1, result2, result3, result4];
   
   return returnSongs;
 };

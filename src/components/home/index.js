@@ -96,7 +96,7 @@ const Home = () => {
           </>
         )}
 
-<h3>Recommended Tracks</h3>
+<h3>Top Hits</h3>
         <RandomTracks />
       </div>
     </div>

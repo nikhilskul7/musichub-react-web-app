@@ -19,10 +19,10 @@ const SongCard = ({ song }) => {
           <Card.Title>{song.title}</Card.Title>
           <Card.Text>
             <h6>
-              <span>{song.album_name}</span>
+              <span>Album: {song.album_name}</span>
             </h6>
             <h5>
-              <span className="badge bg-secondary">{song.artist}</span>{" "}
+              <span className="badge bg-secondary">By {song.artist}</span>{" "}
             </h5>
             <Button onClick={handleClick}>View Details</Button>
           </Card.Text>

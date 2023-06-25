@@ -108,9 +108,9 @@ const SongDetails = () => {
       {!loading && (
         <>
           <h2>{song.title}</h2>
-          <h5>{song.album_name}</h5>
+          <h5>Album: {song.album_name}</h5>
           <h5>
-            <span className="badge bg-secondary">{song.artist}</span>{" "}
+            <span className="badge bg-secondary">By {song.artist}</span>{" "}
             <span
               className="wd-float-right wd-font-size-15px"
               disabled={!currentUser}

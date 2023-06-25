@@ -5,7 +5,7 @@ import {
   postSongCommentService,
 } from "../../services/song-details-service";
 
-const BASE_API_URL = process.env.REACT_API_BASE || "http://localhost:4000";
+const BASE_API_URL = process.env.REACT_APP_BASE;
 const USER_API_URL = BASE_API_URL + "/song";
 
 export const songDetailsThunks = createAsyncThunk(

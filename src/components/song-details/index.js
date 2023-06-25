@@ -21,7 +21,7 @@ import { userLikesSongsThunk } from "../likes/likes-thunks";
 import ReviewComponent from "./review-component";
 
 
-const BASE_API_URL = process.env.REACT_APP_BASE || "http://localhost:4000";
+const BASE_API_URL = process.env.REACT_APP_BASE;
 const USERS_URL = BASE_API_URL + "/users";
 
 const api = axios.create({ withCredentials: true });
@@ -39,6 +39,7 @@ const SongDetails = () => {
   useEffect(() => {
     dispatch(songDetailsThunks(mid));
     dispatch(findReviewsBySongsThunk(mid));
+    dispatch(userLikesSongsThunk(mid));
   }, []);
 
   const postSongReview = () => {

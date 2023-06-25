@@ -54,20 +54,20 @@ function AdminDashboard() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    api.get("http://localhost:4000/api/reviews").then((response) => {
+    api.get("https://musichub-node-server-app.onrender.com/api/reviews").then((response) => {
       setReviews(response.data);
     });
   }, []);
 
   useEffect(() => {
-    api.get("http://localhost:4000/event").then((response) => {
+    api.get("https://musichub-node-server-app.onrender.com/event").then((response) => {
       setEvents(response.data);
     });
   }, []);
 
   const handleReviewDelete = (id) => {
     api
-      .delete(`http://localhost:4000/api/reviews/song/${id}`)
+      .delete(`https://musichub-node-server-app.onrender.com/api/reviews/song/${id}`)
       .then(() => {
         const updatedReviews = reviews.filter((review) => review._id !== id);
         setReviews(updatedReviews);
@@ -79,7 +79,7 @@ function AdminDashboard() {
 
   const handleEventDelete = (id) => {
     api
-      .delete(`http://localhost:4000/event/${id}`)
+      .delete(`https://musichub-node-server-app.onrender.com/event/${id}`)
       .then(() => {
         const updatedEvents = events.filter((event) => event._id !== id);
         setEvents(updatedEvents);

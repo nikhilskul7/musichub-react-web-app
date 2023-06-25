@@ -1,13 +1,14 @@
 import axios from "axios";
 
 const SEARCH_URL = process.env.REACT_APP_SONG_DETAILS;
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const songDetailsService = async (mid) => {
   
   const songdbResponse = await axios.get(`${SEARCH_URL}${mid}`, {
     headers: {
       'x-rapidapi-host': 'deezerdevs-deezer.p.rapidapi.com',
-      'x-rapidapi-key': 'd29c6b0474mshfc0edaba12a558cp153be5jsne19e37006e97',
+      'x-rapidapi-key': API_KEY,
     }
   });
  

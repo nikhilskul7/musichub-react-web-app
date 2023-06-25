@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 const SEARCH_URL1 = "https://deezerdevs-deezer.p.rapidapi.com/track/623698142";
 const SEARCH_URL2 = "https://deezerdevs-deezer.p.rapidapi.com/track/2299840635";
 const SEARCH_URL3 = "https://deezerdevs-deezer.p.rapidapi.com/track/1977132317";
@@ -9,25 +11,25 @@ const fetchRandomSong = async () => {
   const response1 = await axios.get(`${SEARCH_URL1}`, {
     headers: {
       'X-RapidAPI-Key': 'd29c6b0474mshfc0edaba12a558cp153be5jsne19e37006e97', 
-      'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
+      'X-RapidAPI-Host': API_KEY
     },
   });
   const response2 = await axios.get(`${SEARCH_URL2}`, {
     headers: {
       'X-RapidAPI-Key': 'd29c6b0474mshfc0edaba12a558cp153be5jsne19e37006e97', 
-      'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
+      'X-RapidAPI-Host': API_KEY
     },
   });
   const response3 = await axios.get(`${SEARCH_URL3}`, {
     headers: {
       'X-RapidAPI-Key': 'd29c6b0474mshfc0edaba12a558cp153be5jsne19e37006e97', 
-      'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
+      'X-RapidAPI-Host': API_KEY
     },
   });
   const response4 = await axios.get(`${SEARCH_URL4}`, {
     headers: {
       'X-RapidAPI-Key': 'd29c6b0474mshfc0edaba12a558cp153be5jsne19e37006e97', 
-      'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
+      'X-RapidAPI-Host': API_KEY
     },
   });
 

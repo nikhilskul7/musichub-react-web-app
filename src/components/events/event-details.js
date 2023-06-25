@@ -45,12 +45,7 @@ const EventDetails = () => {
               )}
             </div>
             <h5 className="eventDate">
-              {new Date(eventById.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-                timeZone: "UTC",
-              })}
+              {new Date(eventById.date)}
             </h5>
             <hr />
             <div className="eventDescription">{eventById.description}</div>

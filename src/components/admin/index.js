@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Chart from "./chart";
 import axios from "axios";
 
-const BASE_API_URL = process.env.REACT_API_BASE || "http://localhost:4000";
+const BASE_API_URL = process.env.REACT_APP_BASE;
 
 function AdminDashboard() {
   const MONTHS = useMemo(

@@ -4,7 +4,7 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
 const TOP_URL1 = "https://deezerdevs-deezer.p.rapidapi.com/track/2299840635";
 const TOP_URL2 = "https://deezerdevs-deezer.p.rapidapi.com/track/2216207477";
-const TOP_URL3 = "https://deezerdevs-deezer.p.rapidapi.com/track/2210576197";
+const TOP_URL3 = "https://deezerdevs-deezer.p.rapidapi.com/track/2289342455";
 const TOP_URL4 = "https://deezerdevs-deezer.p.rapidapi.com/track/2105158337";
 
 

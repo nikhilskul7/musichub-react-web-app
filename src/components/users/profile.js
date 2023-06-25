@@ -297,6 +297,7 @@ const Profile = () => {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
+                        timeZone: "UTC",
                       })}
                       readOnly
                       plaintext
@@ -357,6 +358,7 @@ const Profile = () => {
                           year: "numeric",
                           month: "long",
                           day: "numeric",
+                          timeZone: "UTC",
                         })}</span>
                       </div>
                     </li>

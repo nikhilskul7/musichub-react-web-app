@@ -201,6 +201,7 @@ const PublicProfile = () => {
                           year: "numeric",
                           month: "long",
                           day: "numeric",
+                          timeZone: "UTC",
                         })}
                         readOnly
                         plaintext
@@ -243,7 +244,12 @@ const PublicProfile = () => {
                           <div className={'text-secondary'}>
                             <span>By: {e.host.hostName}</span>
                             <i className="bi bi-dot"></i>
-                            <span>{parseTime(e.date)}</span>
+                            <span>{new Date(e.date).toLocaleDateString("en-US", {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                              timeZone: "UTC",
+                            })}</span>
                           </div>
                         </li>
                       ))
